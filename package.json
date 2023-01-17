@@ -42,7 +42,7 @@
     "@myrmidon/cadmus-part-geo-asserted-toponyms": "^0.0.1",
     "@myrmidon/cadmus-part-geo-pg": "^0.0.1",
     "@myrmidon/cadmus-part-philology-pg": "^2.0.1",
-    "@myrmidon/cadmus-part-philology-ui": "^2.0.5",
+    "@myrmidon/cadmus-part-philology-ui": "^2.0.6",
     "@myrmidon/cadmus-preview-pg": "^2.0.0",
     "@myrmidon/cadmus-preview-ui": "^2.0.2",
     "@myrmidon/cadmus-profile-core": "^2.0.0",
