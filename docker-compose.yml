@@ -64,7 +64,7 @@ services:
       - cadmus-network
 
   cadmus-app:
-    image: vedph2020/cadmus-vela-app:0.0.2
+    image: vedph2020/cadmus-vela-app:0.0.3
     ports:
       - 4200:80
     depends_on:
