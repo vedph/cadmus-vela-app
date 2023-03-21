@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { GrfSupportState } from '../grf-summary-part';
 
 /**
@@ -35,6 +36,10 @@ export class GrfSupportStateComponent {
     this._state = value || undefined;
     this.updateForm(this._state);
   }
+
+  // grf-support-states
+  @Input()
+  public stateEntries?: ThesaurusEntry[];
 
   @Output()
   public editorClose: EventEmitter<any>;
