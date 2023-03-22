@@ -3,6 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@myrmidon/cadmus-part-graffiti-figurative": [
+        "dist/myrmidon/cadmus-part-graffiti-figurative"
+      ],
       "@myrmidon/cadmus-part-graffiti-pg": [
         "dist/myrmidon/cadmus-part-graffiti-pg"
       ],

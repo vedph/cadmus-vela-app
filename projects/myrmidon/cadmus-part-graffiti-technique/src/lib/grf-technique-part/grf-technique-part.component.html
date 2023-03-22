@@ -30,10 +30,6 @@
         <mat-label i18n>note</mat-label>
         <textarea matInput [formControl]="note"></textarea>
         <mat-error i18n
-          *ngIf="$any(note).errors?.required && (note.dirty || note.touched)"
-          >note required</mat-error
-        >
-        <mat-error i18n
           *ngIf="$any(note).errors?.maxLength && (note.dirty || note.touched)"
           >note too long</mat-error
         >
