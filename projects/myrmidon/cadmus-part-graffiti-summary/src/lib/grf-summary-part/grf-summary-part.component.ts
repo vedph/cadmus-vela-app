@@ -6,7 +6,7 @@ import {
   FormGroup,
   UntypedFormGroup,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
@@ -17,7 +17,12 @@ import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 import { Flag, FlagsPickerAdapter } from '@myrmidon/cadmus-ui-flags-picker';
 import { NgToolsValidators } from '@myrmidon/ng-tools';
 
-import { GrfSummaryPart, GRF_SUMMARY_PART_TYPEID } from '../grf-summary-part';
+import {
+  GrfSummaryPart,
+  GrfSupportState,
+  GRF_SUMMARY_PART_TYPEID,
+} from '../grf-summary-part';
+import { DialogService } from '@myrmidon/ng-mat-tools';
 
 function entryToFlag(entry: ThesaurusEntry): Flag {
   return {
@@ -45,6 +50,9 @@ export class GrfSummaryPartComponent
   private readonly _flagAdapter: FlagsPickerAdapter;
   private _featEntries?: ThesaurusEntry[];
 
+  public editedStateIndex: number;
+  public editedState?: GrfSupportState;
+
   // flags
   public featFlags$: Observable<Flag[]>;
 
@@ -63,6 +71,7 @@ export class GrfSummaryPartComponent
   public figDescription: FormControl<string | null>;
   public frameDescription: FormControl<string | null>;
   public lastSeen: FormControl<string>;
+  public states: FormControl<GrfSupportState[]>;
 
   // grf-place-languages
   public plngEntries?: ThesaurusEntry[];
@@ -81,7 +90,7 @@ export class GrfSummaryPartComponent
   // physical-size-units
   public szUnitEntries?: ThesaurusEntry[];
   // physical-size-dim-tags
-  public szDimEntries?: ThesaurusEntry[];
+  public szDimTagEntries?: ThesaurusEntry[];
   // grf-features
   public get featEntries(): ThesaurusEntry[] | undefined {
     return this._featEntries;
@@ -99,8 +108,13 @@ export class GrfSummaryPartComponent
   // grf-support-states
   public stateEntries?: ThesaurusEntry[];
 
-  constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
+  constructor(
+    authService: AuthJwtService,
+    formBuilder: FormBuilder,
+    private _dialog: DialogService
+  ) {
     super(authService, formBuilder);
+    this.editedStateIndex = -1;
     // form
     this.place = formBuilder.control(null, Validators.required);
     this.supportType = formBuilder.control('', {
@@ -144,6 +158,7 @@ export class GrfSummaryPartComponent
       validators: Validators.required,
       nonNullable: true,
     });
+    this.states = formBuilder.control([], { nonNullable: true });
     // flags
     this._flagAdapter = new FlagsPickerAdapter();
     this.featFlags$ = this._flagAdapter.selectFlags('features');
@@ -170,6 +185,7 @@ export class GrfSummaryPartComponent
       figDescription: this.figDescription,
       frameDescription: this.frameDescription,
       lastSeen: this.lastSeen,
+      states: this.states,
     });
   }
 
@@ -224,9 +240,9 @@ export class GrfSummaryPartComponent
     }
     key = 'physical-size-dim-tags';
     if (this.hasThesaurus(key)) {
-      this.szDimEntries = thesauri[key].entries;
+      this.szDimTagEntries = thesauri[key].entries;
     } else {
-      this.szDimEntries = undefined;
+      this.szDimTagEntries = undefined;
     }
     key = 'grf-features';
     if (this.hasThesaurus(key)) {
@@ -264,6 +280,7 @@ export class GrfSummaryPartComponent
     this.figDescription.setValue(part.figDescription || null);
     this.frameDescription.setValue(part.frameDescription || null);
     this.lastSeen.setValue(part.lastSeen.toUTCString());
+    this.states.setValue(part.states || []);
     this.form.markAsPristine();
   }
 
@@ -294,7 +311,8 @@ export class GrfSummaryPartComponent
     part.features = this._flagAdapter.getOptionalCheckedFlagIds('features');
     part.figDescription = this.figDescription.value?.trim();
     part.frameDescription = this.frameDescription.value?.trim();
-    part.lastSeen = part.lastSeen = new Date(Date.parse(this.lastSeen.value));
+    part.lastSeen = new Date(Date.parse(this.lastSeen.value));
+    part.states = this.states.value?.length ? this.states.value : undefined;
 
     return part;
   }
@@ -303,5 +321,96 @@ export class GrfSummaryPartComponent
     this.place.setValue(name || null);
     this.place.updateValueAndValidity();
     this.place.markAsDirty();
+  }
+
+  public onSizeChange(size: PhysicalSize): void {
+    this.size.setValue(size);
+    this.size.updateValueAndValidity();
+    this.size.markAsDirty();
+  }
+
+  public onFlagsChange(flags: Flag[]): void {
+    this._flagAdapter.setSlotFlags('features', flags, true);
+    this.features.setValue(flags);
+    this.features.markAsDirty();
+    this.features.updateValueAndValidity();
+  }
+
+  public onDateChange(date: HistoricalDateModel): void {
+    this.date.setValue(date);
+    this.date.markAsDirty();
+    this.date.updateValueAndValidity();
+  }
+
+  public editState(state: GrfSupportState, index = -1): void {
+    this.editedState = state;
+    this.editedStateIndex = index;
+  }
+
+  public closeState(): void {
+    this.editedState = undefined;
+    this.editedStateIndex = -1;
+  }
+
+  private getCurrentUTCTime(noSeconds = false): Date {
+    const now = new Date(Date.now());
+    return new Date(
+      Date.UTC(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        now.getHours(),
+        now.getMinutes(),
+        noSeconds ? 0 : now.getSeconds()
+      )
+    );
+  }
+
+  public addState(): void {
+    this.editState({
+      type: this.stateEntries?.length ? this.stateEntries[0].id : '',
+      date: this.getCurrentUTCTime(),
+      reporter: '',
+    });
+  }
+
+  public saveState(state: GrfSupportState): void {
+    const states = [...this.states.value, state].sort((a, b) => {
+      if (a.date > b.date) {
+        return 1;
+      } else if (a.date < b.date) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    this.states.setValue(states);
+    this.states.markAsDirty();
+    this.states.updateValueAndValidity();
+    this.closeState();
+  }
+
+  public deleteState(index: number): void {
+    this._dialog
+      .confirm(
+        $localize`Confirm`,
+        $localize`Delete this state?`,
+        $localize`Yes`,
+        $localize`No`
+      )
+      .pipe(take(1))
+      .subscribe((yes) => {
+        if (!yes) {
+          return;
+        }
+        if (this.editedStateIndex === index) {
+          this.closeState();
+        }
+        const states = [...this.states.value];
+        states.splice(index, 1);
+        this.states.setValue(states);
+        this.states.markAsDirty();
+        this.states.updateValueAndValidity();
+      });
   }
 }

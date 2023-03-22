@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
 import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
+import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
 import { CadmusRefsProperNameModule } from '@myrmidon/cadmus-refs-proper-name';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
@@ -59,6 +60,7 @@ import { GrfSummaryPartComponent } from './grf-summary-part/grf-summary-part.com
     // cadmus
     CadmusCoreModule,
     CadmusStateModule,
+    CadmusRefsHistoricalDateModule,
     CadmusRefsProperNameModule,
     CadmusUiModule,
     CadmusUiFlagsPickerModule,

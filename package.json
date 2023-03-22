@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-sum": "ng build @myrmidon/cadmus-part-graffiti-summary",
+    "build-lib": "npm run build-sum"
   },
   "private": true,
   "dependencies": {

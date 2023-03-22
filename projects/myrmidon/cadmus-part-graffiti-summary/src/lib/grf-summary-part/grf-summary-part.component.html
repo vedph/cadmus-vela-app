@@ -162,7 +162,8 @@
             <mat-form-field *ngIf="!supfEntries?.length">
               <mat-label i18n>original function</mat-label>
               <input matInput [formControl]="originalFn" />
-              <mat-error i18n
+              <mat-error
+                i18n
                 *ngIf="
                   $any(originalFn).errors?.maxLength &&
                   (originalFn.dirty || originalFn.touched)
@@ -175,14 +176,232 @@
 
         <!-- MATERIAL -->
         <mat-tab i18n-label label="material">
+          <!-- material (bound) -->
+          <mat-form-field *ngIf="supmEntries?.length">
+            <mat-label i18n>material</mat-label>
+            <mat-select [formControl]="material">
+              <mat-option *ngFor="let e of supmEntries" [value]="e.id">{{
+                e.value
+              }}</mat-option>
+            </mat-select>
+            <mat-error
+              i18n
+              *ngIf="
+                $any(material).errors?.required &&
+                (material.dirty || material.touched)
+              "
+              >material required</mat-error
+            >
+          </mat-form-field>
+          <!-- material (free) -->
+          <mat-form-field *ngIf="!supmEntries?.length">
+            <mat-label i18n>material</mat-label>
+            <input matInput [formControl]="material" />
+            <mat-error
+              i18n
+              *ngIf="
+                $any(material).errors?.required &&
+                (material.dirty || material.touched)
+              "
+              >material required</mat-error
+            >
+            <mat-error
+              i18n
+              *ngIf="
+                $any(material).errors?.maxLength &&
+                (material.dirty || material.touched)
+              "
+              >material too long</mat-error
+            >
+          </mat-form-field>
 
+          <!-- description -->
+          <div>
+            <mat-form-field class="long-text">
+              <mat-label i18n>description</mat-label>
+              <textarea matInput [formControl]="description"></textarea>
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(description).errors?.required &&
+                  (description.dirty || description.touched)
+                "
+                >description required</mat-error
+              >
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(description).errors?.maxLength &&
+                  (description.dirty || description.touched)
+                "
+                >description too long</mat-error
+              >
+            </mat-form-field>
+          </div>
         </mat-tab>
 
-        <!-- IDENTITY -->
-        <mat-tab i18n-label label="identity"></mat-tab>
+        <!-- IDENTIFICATION -->
+        <mat-tab i18n-label label="identification">
+          <!-- size -->
+          <div>
+            <cadmus-mat-physical-size
+              [tagEntries]="szTagEntries"
+              [unitEntries]="szUnitEntries"
+              [dimTagEntries]="szDimTagEntries"
+              [size]="size.value"
+              (sizeChange)="onSizeChange($event)"
+            ></cadmus-mat-physical-size>
+          </div>
+
+          <!-- features -->
+          <fieldset>
+            <legend i18n>features</legend>
+            <cadmus-ui-flags-picker
+              [flags]="featFlags$ | async"
+              (flagsChange)="onFlagsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+
+          <!-- date -->
+          <cadmus-refs-historical-date
+            [date]="date.value"
+            (dateChange)="onDateChange($event)"
+          ></cadmus-refs-historical-date>
+
+          <!-- figDescription -->
+          <mat-form-field>
+            <mat-label i18n>figurative dsc.</mat-label>
+            <input matInput [formControl]="figDescription" />
+            <mat-error
+              i18n
+              *ngIf="
+                $any(figDescription).errors?.required &&
+                (figDescription.dirty || figDescription.touched)
+              "
+              >figurative dsc. required</mat-error
+            >
+            <mat-error
+              i18n
+              *ngIf="
+                $any(figDescription).errors?.maxLength &&
+                (figDescription.dirty || figDescription.touched)
+              "
+              >figurative dsc. too long</mat-error
+            >
+          </mat-form-field>
+
+          <!-- frameDescription -->
+          <mat-form-field>
+            <mat-label i18n>frame dsc.</mat-label>
+            <input matInput [formControl]="frameDescription" />
+            <mat-error
+              i18n
+              *ngIf="
+                $any(frameDescription).errors?.required &&
+                (frameDescription.dirty || frameDescription.touched)
+              "
+              >frame dsc. required</mat-error
+            >
+            <mat-error
+              i18n
+              *ngIf="
+                $any(frameDescription).errors?.maxLength &&
+                (frameDescription.dirty || frameDescription.touched)
+              "
+              >frame dsc. too long</mat-error
+            >
+          </mat-form-field>
+
+          <!-- lastSeen -->
+          <div>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="lastSeen"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+              i18n
+              *ngIf="
+                $any(date).errors?.required && (date.dirty || date.touched)
+              "
+              >last seen required</mat-error
+            >
+          </div>
+        </mat-tab>
 
         <!-- STATES -->
-        <mat-tab i18n-label label="states"></mat-tab>
+        <mat-tab i18n-label label="states">
+          <div>
+            <button
+              type="button"
+              mat-flat-button
+              color="primary"
+              (click)="addState()"
+            >
+              <mat-icon>add_circle</mat-icon>
+              <ng-container i18n>state</ng-container>
+            </button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th i18n>date</th>
+                <th i18n>type</th>
+                <th i18n>reporter</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let s of states.value; let i = index">
+                <td>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="primary"
+                    (click)="editState(s, i)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="warn"
+                    (click)="deleteState(i)"
+                  >
+                    <mat-icon>remove_circle</mat-icon>
+                  </button>
+                </td>
+                <td>
+                  {{ s.date | date : "yyyy-MM-dd" }}
+                </td>
+                <td>
+                  {{ s.type }}
+                </td>
+                <td>
+                  {{ s.reporter }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <mat-expansion-panel
+            [disabled]="!editedState"
+            [expanded]="editedState"
+          >
+            <mat-expansion-panel-header
+              >#{{ editedStateIndex + 1 }}</mat-expansion-panel-header
+            >
+            <cadmus-grf-support-state
+              [stateEntries]="stateEntries"
+              [state]="editedState"
+              (stateChange)="saveState($event)"
+            ></cadmus-grf-support-state>
+          </mat-expansion-panel>
+        </mat-tab>
       </mat-tab-group>
     </mat-card-content>
     <mat-card-actions>
