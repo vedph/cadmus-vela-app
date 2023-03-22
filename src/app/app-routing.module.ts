@@ -133,7 +133,15 @@ const routes: Routes = [
       ),
     canActivate: [AuthJwtGuardService],
   },
-
+  // graffiti
+  {
+    path: 'items/:iid/graffiti',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-part-graffiti-pg').then(
+        (module) => module.CadmusPartGraffitiPgModule
+      ),
+    canActivate: [AuthJwtGuardService],
+  },
   // fallback
   { path: '**', component: HomeComponent },
 ];

@@ -35,7 +35,11 @@ import { GrfSummaryPartComponent } from './grf-summary-part/grf-summary-part.com
 import { GrfSummaryPartFeatureComponent } from './grf-summary-part-feature/grf-summary-part-feature.component';
 
 @NgModule({
-  declarations: [GrfSummaryPartComponent, GrfSupportStateComponent, GrfSummaryPartFeatureComponent],
+  declarations: [
+    GrfSummaryPartComponent,
+    GrfSupportStateComponent,
+    GrfSummaryPartFeatureComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -69,6 +73,10 @@ import { GrfSummaryPartFeatureComponent } from './grf-summary-part-feature/grf-s
     CadmusRefsDecoratedCountsModule,
     CadmusUiPgModule,
   ],
-  exports: [GrfSummaryPartComponent, GrfSupportStateComponent],
+  exports: [
+    GrfSummaryPartComponent,
+    GrfSupportStateComponent,
+    GrfSummaryPartFeatureComponent,
+  ],
 })
 export class CadmusPartGraffitiSummaryModule {}

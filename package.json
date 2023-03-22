@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-sum": "ng build @myrmidon/cadmus-part-graffiti-summary",
-    "build-lib": "npm run build-sum"
+    "build-pg": "ng build @myrmidon/cadmus-part-graffiti-pg",
+    "build-lib": "npm run build-sum && npm run build-pg"
   },
   "private": true,
   "dependencies": {
