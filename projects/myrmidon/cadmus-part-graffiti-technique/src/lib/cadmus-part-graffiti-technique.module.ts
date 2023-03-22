@@ -2,13 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,27 +15,19 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 
+import { NgToolsModule } from '@myrmidon/ng-tools';
+
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
-import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
-import { CadmusRefsProperNameModule } from '@myrmidon/cadmus-refs-proper-name';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
 import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
-import { NgToolsModule } from '@myrmidon/ng-tools';
 
-import { GrfSupportStateComponent } from './grf-support-state/grf-support-state.component';
-import { GrfSummaryPartComponent } from './grf-summary-part/grf-summary-part.component';
-import { GrfSummaryPartFeatureComponent } from './grf-summary-part-feature/grf-summary-part-feature.component';
+import { GrfTechniquePartComponent } from './grf-technique-part/grf-technique-part.component';
+import { GrfTechniquePartFeatureComponent } from './grf-technique-part-feature/grf-technique-part-feature.component';
 
 @NgModule({
-  declarations: [
-    GrfSummaryPartComponent,
-    GrfSupportStateComponent,
-    GrfSummaryPartFeatureComponent,
-  ],
+  declarations: [GrfTechniquePartComponent, GrfTechniquePartFeatureComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -50,13 +38,10 @@ import { GrfSummaryPartFeatureComponent } from './grf-summary-part-feature/grf-s
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatDatepickerModule,
-    MatDialogModule,
     MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatNativeDateModule,
     MatSelectModule,
     MatSnackBarModule,
     MatTabsModule,
@@ -66,18 +51,10 @@ import { GrfSummaryPartFeatureComponent } from './grf-summary-part-feature/grf-s
     // cadmus
     CadmusCoreModule,
     CadmusStateModule,
-    CadmusRefsHistoricalDateModule,
-    CadmusRefsProperNameModule,
     CadmusUiModule,
     CadmusUiFlagsPickerModule,
-    CadmusMatPhysicalSizeModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusUiPgModule,
   ],
-  exports: [
-    GrfSummaryPartComponent,
-    GrfSupportStateComponent,
-    GrfSummaryPartFeatureComponent,
-  ],
+  exports: [GrfTechniquePartComponent, GrfTechniquePartFeatureComponent],
 })
-export class CadmusPartGraffitiSummaryModule {}
+export class CadmusPartGraffitiTechniqueModule {}

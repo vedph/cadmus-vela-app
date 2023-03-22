@@ -3,10 +3,11 @@
     <span style="flex: 0 0 60px"
       ><img src="./assets/img/logo-white-40.png" alt="Fusisoft"
     /></span>
-    <a mat-button routerLink="/home">Cadmus Vela</a>
+    <a mat-button routerLink="/home">Cadmus VeLA</a>
 
     <!-- items menu -->
     <button
+      type="button"
       mat-button
       [matMenuTriggerFor]="itemMenu"
       *ngIf="logged && itemBrowsers"
@@ -23,15 +24,20 @@
     </mat-menu>
     <!-- item menu -->
     <ng-container *ngIf="logged && !itemBrowsers">
-      <button mat-button routerLink="/items">Items</button>
+      <button type="button" mat-button routerLink="/items">Items</button>
     </ng-container>
 
     <!-- search menu -->
-    <button mat-button routerLink="/search" *ngIf="logged">Search</button>
+    <button type="button" mat-button routerLink="/search" *ngIf="logged">
+      Search
+    </button>
     <!-- graph menu -->
-    <button mat-button routerLink="/graph" *ngIf="logged">Graph</button>
+    <button type="button" mat-button routerLink="/graph" *ngIf="logged">
+      Graph
+    </button>
     <!-- thesauri menu -->
     <button
+      type="button"
       mat-button
       routerLink="/thesauri"
       *ngIf="
@@ -46,7 +52,11 @@
     <!-- user -->
     <div *ngIf="user">
       <!-- indicators -->
-      <img [src]="getGravatarUrl(user.email, 32)" [alt]="user.userName" />
+      <img
+        alt="avatar"
+        [src]="getGravatarUrl(user.email, 32)"
+        [alt]="user.userName"
+      />
       <mat-icon
         class="small-icon"
         *ngIf="user && user.roles.includes('admin')"
@@ -61,13 +71,16 @@
       >
 
       <!-- user menu -->
-      <button mat-button [matMenuTriggerFor]="userMenu">User</button>
+      <button type="button" mat-button [matMenuTriggerFor]="userMenu">
+        User
+      </button>
       <mat-menu #userMenu>
         <a mat-menu-item routerLink="/reset-password">Reset password</a>
       </mat-menu>
 
       <!-- admin menu -->
       <button
+        type="button"
         *ngIf="user && user.roles.includes('admin')"
         mat-button
         [matMenuTriggerFor]="adminMenu"
@@ -81,11 +94,11 @@
     </div>
 
     <!-- login -->
-    <button *ngIf="!logged" mat-icon-button routerLink="/login">
+    <button type="button" *ngIf="!logged" mat-icon-button routerLink="/login">
       <mat-icon>login</mat-icon>
     </button>
     <!-- logout -->
-    <button *ngIf="logged" mat-icon-button (click)="logout()">
+    <button type="button" *ngIf="logged" mat-icon-button (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
@@ -99,8 +112,10 @@
   <div layout="row" layout-align="center center">
     <p>
       Cadmus by
-      <a href="http://www.fusisoft.it" target="_blank">Daniele Fusi</a> -
-      version {{ version }}
+      <a rel="noopener" href="http://www.fusisoft.it" target="_blank"
+        >Daniele Fusi</a
+      >
+      - version {{ version }}
     </p>
   </div>
 </footer>

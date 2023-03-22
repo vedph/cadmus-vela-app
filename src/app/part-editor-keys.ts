@@ -25,7 +25,9 @@ import { ASSERTED_TOPONYMS_PART_TYPEID } from '@myrmidon/cadmus-part-geo-asserte
 import { EPI_SUPPORT_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-support';
 import { EPI_WRITING_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-writing';
 import { EPI_LIGATURES_FRAGMENT_TYPEID } from '@myrmidon/cadmus-fr-epigraphy-ligatures';
+
 import { GRF_SUMMARY_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-summary/src/public-api';
+import { GRF_TECHNIQUE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-technique/src/public-api';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
@@ -91,6 +93,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   },
   // graffiti
   [GRF_SUMMARY_PART_TYPEID]: {
+    part: GRAFFITI,
+  },
+  [GRF_TECHNIQUE_PART_TYPEID]: {
     part: GRAFFITI,
   },
   // layer parts

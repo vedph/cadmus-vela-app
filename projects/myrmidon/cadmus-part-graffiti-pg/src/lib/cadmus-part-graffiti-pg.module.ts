@@ -5,19 +5,29 @@ import { RouterModule } from '@angular/router';
 
 // cadmus
 import { CadmusCoreModule, PendingChangesGuard } from '@myrmidon/cadmus-core';
+import { CadmusStateModule } from '@myrmidon/cadmus-state';
+import { CadmusUiModule } from '@myrmidon/cadmus-ui';
+import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import {
   GrfSummaryPartFeatureComponent,
   GRF_SUMMARY_PART_TYPEID,
 } from '@myrmidon/cadmus-part-graffiti-summary';
-import { CadmusStateModule } from '@myrmidon/cadmus-state';
-import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
+import {
+  GrfTechniquePartFeatureComponent,
+  GRF_TECHNIQUE_PART_TYPEID,
+} from '@myrmidon/cadmus-part-graffiti-technique';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
     path: `${GRF_SUMMARY_PART_TYPEID}/:pid`,
     pathMatch: 'full',
     component: GrfSummaryPartFeatureComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
+  {
+    path: `${GRF_TECHNIQUE_PART_TYPEID}/:pid`,
+    pathMatch: 'full',
+    component: GrfTechniquePartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
 ]);

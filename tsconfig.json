@@ -8,6 +8,9 @@
       ],
       "@myrmidon/cadmus-part-graffiti-summary": [
         "dist/myrmidon/cadmus-part-graffiti-summary"
+      ],
+      "@myrmidon/cadmus-part-graffiti-technique": [
+        "dist/myrmidon/cadmus-part-graffiti-technique"
       ]
     },
     "baseUrl": "./",
