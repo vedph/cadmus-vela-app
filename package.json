@@ -9,8 +9,9 @@
     "test": "ng test",
     "build-sum": "ng build @myrmidon/cadmus-part-graffiti-summary",
     "build-tec": "ng build @myrmidon/cadmus-part-graffiti-technique",
+    "build-wri": "ng build @myrmidon/cadmus-part-graffiti-writing",
     "build-pg": "ng build @myrmidon/cadmus-part-graffiti-pg",
-    "build-lib": "npm run build-sum && npm run build-tec && npm run build-pg"
+    "build-lib": "npm run build-sum && npm run build-tec && npm run build-wri && npm run build-pg"
   },
   "private": true,
   "dependencies": {

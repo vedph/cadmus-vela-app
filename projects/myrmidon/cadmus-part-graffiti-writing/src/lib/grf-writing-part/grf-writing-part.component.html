@@ -1,0 +1,135 @@
+<form [formGroup]="form" (submit)="save()">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>picture_in_picture</mat-icon>
+      </div>
+      <mat-card-title i18n>Writing Part</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group>
+        <!-- GENERAL -->
+        <mat-tab i18n-label label="general">
+          <div class="form-row">
+            <!-- system (bound) -->
+            <mat-form-field *ngIf="sysEntries?.length">
+              <mat-label i18n>system</mat-label>
+              <mat-select [formControl]="system">
+                <mat-option *ngFor="let e of sysEntries" [value]="e.id">{{
+                  e.value
+                }}</mat-option>
+              </mat-select>
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(system).errors?.required &&
+                  (system.dirty || system.touched)
+                "
+                >system required</mat-error
+              >
+            </mat-form-field>
+            <!-- system (free) -->
+            <mat-form-field *ngIf="!sysEntries?.length">
+              <mat-label i18n>system</mat-label>
+              <input matInput [formControl]="system" />
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(system).errors?.required &&
+                  (system.dirty || system.touched)
+                "
+                >system required</mat-error
+              >
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(system).errors?.maxLength &&
+                  (system.dirty || system.touched)
+                "
+                >system too long</mat-error
+              >
+            </mat-form-field>
+
+            <!-- type -->
+            <!-- type (bound) -->
+            <mat-form-field *ngIf="typEntries?.length">
+              <mat-label i18n>type</mat-label>
+              <mat-select [formControl]="type">
+                <mat-option *ngFor="let e of typEntries" [value]="e.id">{{
+                  e.value
+                }}</mat-option>
+              </mat-select>
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(type).errors?.required && (type.dirty || type.touched)
+                "
+                >type required</mat-error
+              >
+            </mat-form-field>
+            <!-- type (free) -->
+            <mat-form-field *ngIf="!typEntries?.length">
+              <mat-label i18n>type</mat-label>
+              <input matInput [formControl]="type" />
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(type).errors?.required && (type.dirty || type.touched)
+                "
+                >type required</mat-error
+              >
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(type).errors?.maxLength && (type.dirty || type.touched)
+                "
+                >type too long</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <!-- languages -->
+          <fieldset>
+            <legend i18n>language(s)</legend>
+            <cadmus-ui-flags-picker
+              [flags]="lngFlags$ | async"
+              (flagsChange)="onLanguageFlagsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+        </mat-tab>
+
+        <!-- FEATURES -->
+        <mat-tab i18n-label label="features">
+          <!-- counts -->
+          <!-- features -->
+          <fieldset>
+            <legend i18n>features</legend>
+            <cadmus-ui-flags-picker
+              [flags]="featFlags$ | async"
+              (flagsChange)="onFeatureFlagsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+
+          <!-- poetry -->
+          <mat-checkbox i18n [formControl]="hasPoetry">has poetry</mat-checkbox>
+
+          <!-- metres -->
+          <fieldset *ngIf="hasPoetry.value">
+            <legend i18n>language(s)</legend>
+            <cadmus-ui-flags-picker
+              [flags]="mtrFlags$ | async"
+              (flagsChange)="onMetreFlagsChange($event)"
+            ></cadmus-ui-flags-picker>
+          </fieldset>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions>
+      <cadmus-close-save-buttons
+        [form]="form"
+        [noSave]="userLevel < 2"
+        (closeRequest)="close()"
+      ></cadmus-close-save-buttons>
+    </mat-card-actions>
+  </mat-card>
+</form>

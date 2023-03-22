@@ -11,6 +11,9 @@
       ],
       "@myrmidon/cadmus-part-graffiti-technique": [
         "dist/myrmidon/cadmus-part-graffiti-technique"
+      ],
+      "@myrmidon/cadmus-part-graffiti-writing": [
+        "dist/myrmidon/cadmus-part-graffiti-writing"
       ]
     },
     "baseUrl": "./",
