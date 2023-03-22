@@ -23,17 +23,17 @@ import { RouterModule } from '@angular/router';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
 import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
+import { CadmusRefsProperNameModule } from '@myrmidon/cadmus-refs-proper-name';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
 import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 
 import { GrfSupportStateComponent } from './grf-support-state/grf-support-state.component';
+import { GrfSummaryPartComponent } from './grf-summary-part/grf-summary-part.component';
 
 @NgModule({
-  declarations: [
-    GrfSupportStateComponent
-  ],
+  declarations: [GrfSummaryPartComponent, GrfSupportStateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -59,14 +59,13 @@ import { GrfSupportStateComponent } from './grf-support-state/grf-support-state.
     // cadmus
     CadmusCoreModule,
     CadmusStateModule,
+    CadmusRefsProperNameModule,
     CadmusUiModule,
     CadmusUiFlagsPickerModule,
     CadmusMatPhysicalSizeModule,
     CadmusRefsDecoratedCountsModule,
     CadmusUiPgModule,
   ],
-  exports: [
-    GrfSupportStateComponent
-  ],
+  exports: [GrfSummaryPartComponent, GrfSupportStateComponent],
 })
 export class CadmusPartGraffitiSummaryModule {}

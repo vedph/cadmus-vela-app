@@ -1,6 +1,6 @@
 import { Part } from '@myrmidon/cadmus-core';
 import { PhysicalSize } from '@myrmidon/cadmus-mat-physical-size';
-import { HistoricalDate } from '@myrmidon/cadmus-refs-historical-date';
+import { HistoricalDateModel } from '@myrmidon/cadmus-refs-historical-date';
 import { ProperName } from '@myrmidon/cadmus-refs-proper-name';
 
 export interface GrfSupportState {
@@ -23,7 +23,7 @@ export interface GrfSummaryPart extends Part {
   material: string;
   description: string;
   size: PhysicalSize;
-  date: HistoricalDate;
+  date: HistoricalDateModel;
   features?: string[];
   figDescription?: string;
   frameDescription?: string;
