@@ -24,9 +24,10 @@ import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
 
 import { GrfWritingPartComponent } from './grf-writing-part/grf-writing-part.component';
+import { GrfWritingPartFeatureComponent } from './grf-writing-part-feature/grf-writing-part-feature.component';
 
 @NgModule({
-  declarations: [GrfWritingPartComponent],
+  declarations: [GrfWritingPartComponent, GrfWritingPartFeatureComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -54,6 +55,6 @@ import { GrfWritingPartComponent } from './grf-writing-part/grf-writing-part.com
     CadmusUiFlagsPickerModule,
     CadmusUiPgModule,
   ],
-  exports: [GrfWritingPartComponent],
+  exports: [GrfWritingPartComponent, GrfWritingPartFeatureComponent],
 })
 export class CadmusPartGraffitiWritingModule {}

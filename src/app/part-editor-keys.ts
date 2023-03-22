@@ -28,6 +28,7 @@ import { EPI_LIGATURES_FRAGMENT_TYPEID } from '@myrmidon/cadmus-fr-epigraphy-lig
 
 import { GRF_SUMMARY_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-summary/src/public-api';
 import { GRF_TECHNIQUE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-technique/src/public-api';
+import { GRF_WRITING_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-writing/src/public-api';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
@@ -96,6 +97,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
     part: GRAFFITI,
   },
   [GRF_TECHNIQUE_PART_TYPEID]: {
+    part: GRAFFITI,
+  },
+  [GRF_WRITING_PART_TYPEID]: {
     part: GRAFFITI,
   },
   // layer parts

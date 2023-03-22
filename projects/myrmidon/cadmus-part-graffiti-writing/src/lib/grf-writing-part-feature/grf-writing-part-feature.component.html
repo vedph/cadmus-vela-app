@@ -1,0 +1,8 @@
+<cadmus-current-item-bar></cadmus-current-item-bar>
+<cadmus-grf-writing-part
+  [identity]="identity"
+  [data]="$any(data)"
+  (dataChange)="save($event)"
+  (editorClose)="close()"
+  (dirtyChange)="onDirtyChange($event)"
+></cadmus-grf-writing-part>
