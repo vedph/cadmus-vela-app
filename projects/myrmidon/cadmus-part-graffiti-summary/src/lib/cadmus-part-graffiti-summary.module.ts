@@ -32,9 +32,10 @@ import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 
 import { GrfSupportStateComponent } from './grf-support-state/grf-support-state.component';
 import { GrfSummaryPartComponent } from './grf-summary-part/grf-summary-part.component';
+import { GrfSummaryPartFeatureComponent } from './grf-summary-part-feature/grf-summary-part-feature.component';
 
 @NgModule({
-  declarations: [GrfSummaryPartComponent, GrfSupportStateComponent],
+  declarations: [GrfSummaryPartComponent, GrfSupportStateComponent, GrfSummaryPartFeatureComponent],
   imports: [
     CommonModule,
     FormsModule,
