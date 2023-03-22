@@ -22,10 +22,12 @@ import { CadmusUiModule } from '@myrmidon/cadmus-ui';
 import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
+
 import { GrfFigurativePartComponent } from './grf-figurative-part/grf-figurative-part.component';
+import { GrfFigurativePartFeatureComponent } from './grf-figurative-part-feature/grf-figurative-part-feature.component';
 
 @NgModule({
-  declarations: [GrfFigurativePartComponent],
+  declarations: [GrfFigurativePartComponent, GrfFigurativePartFeatureComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -53,6 +55,6 @@ import { GrfFigurativePartComponent } from './grf-figurative-part/grf-figurative
     CadmusUiFlagsPickerModule,
     CadmusUiPgModule,
   ],
-  exports: [GrfFigurativePartComponent],
+  exports: [GrfFigurativePartComponent, GrfFigurativePartFeatureComponent],
 })
 export class CadmusPartGraffitiFigurativeModule {}

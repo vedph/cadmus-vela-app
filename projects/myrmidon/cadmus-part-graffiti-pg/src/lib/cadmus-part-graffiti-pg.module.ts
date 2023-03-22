@@ -20,6 +20,10 @@ import {
   GrfWritingPartFeatureComponent,
   GRF_WRITING_PART_TYPEID,
 } from '@myrmidon/cadmus-part-graffiti-writing';
+import {
+  GrfFigurativePartFeatureComponent,
+  GRF_FIGURATIVE_PART_TYPEID,
+} from '@myrmidon/cadmus-part-graffiti-figurative';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
@@ -38,6 +42,12 @@ export const RouterModuleForChild = RouterModule.forChild([
     path: `${GRF_WRITING_PART_TYPEID}/:pid`,
     pathMatch: 'full',
     component: GrfWritingPartFeatureComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
+  {
+    path: `${GRF_FIGURATIVE_PART_TYPEID}/:pid`,
+    pathMatch: 'full',
+    component: GrfFigurativePartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
 ]);
