@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { GrfSupportState } from '../grf-summary-part';
+import { GrfSummaryPartComponent } from '../grf-summary-part/grf-summary-part.component';
 
 /**
  * Editor for GrfSupportState.
@@ -78,7 +79,7 @@ export class GrfSupportStateComponent {
       return;
     }
     this.type.setValue(value.type);
-    this.date.setValue(value.date.toUTCString());
+    this.date.setValue(value.date);
     this.reporter.setValue(value.reporter);
     this.note.setValue(value.note || null);
     this.form.markAsPristine();
@@ -87,7 +88,7 @@ export class GrfSupportStateComponent {
   private getState(): GrfSupportState {
     return {
       type: this.type.value,
-      date: new Date(Date.parse(this.date.value)),
+      date: this.date.value,
       reporter: this.reporter.value?.trim(),
       note: this.note.value?.trim()
     };

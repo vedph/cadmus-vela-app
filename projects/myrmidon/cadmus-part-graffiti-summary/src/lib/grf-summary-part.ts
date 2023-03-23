@@ -5,7 +5,7 @@ import { ProperName } from '@myrmidon/cadmus-refs-proper-name';
 
 export interface GrfSupportState {
   type: string;
-  date: Date;
+  date: string;
   reporter: string;
   note?: string;
 }
@@ -27,7 +27,7 @@ export interface GrfSummaryPart extends Part {
   features?: string[];
   figDescription?: string;
   frameDescription?: string;
-  lastSeen: Date;
+  lastSeen: string;
   states?: GrfSupportState[];
 }
 

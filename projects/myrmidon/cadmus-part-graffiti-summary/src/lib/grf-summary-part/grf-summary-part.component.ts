@@ -279,7 +279,7 @@ export class GrfSummaryPartComponent
     );
     this.figDescription.setValue(part.figDescription || null);
     this.frameDescription.setValue(part.frameDescription || null);
-    this.lastSeen.setValue(part.lastSeen.toUTCString());
+    this.lastSeen.setValue(part.lastSeen);
     this.states.setValue(part.states || []);
     this.form.markAsPristine();
   }
@@ -311,7 +311,7 @@ export class GrfSummaryPartComponent
     part.features = this._flagAdapter.getOptionalCheckedFlagIds('features');
     part.figDescription = this.figDescription.value?.trim();
     part.frameDescription = this.frameDescription.value?.trim();
-    part.lastSeen = new Date(Date.parse(this.lastSeen.value));
+    part.lastSeen = this.lastSeen.value;
     part.states = this.states.value?.length ? this.states.value : undefined;
 
     return part;
@@ -352,24 +352,10 @@ export class GrfSummaryPartComponent
     this.editedStateIndex = -1;
   }
 
-  private getCurrentUTCTime(noSeconds = false): Date {
-    const now = new Date(Date.now());
-    return new Date(
-      Date.UTC(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        now.getHours(),
-        now.getMinutes(),
-        noSeconds ? 0 : now.getSeconds()
-      )
-    );
-  }
-
   public addState(): void {
     this.editState({
       type: this.stateEntries?.length ? this.stateEntries[0].id : '',
-      date: this.getCurrentUTCTime(),
+      date: new Date().toUTCString(),
       reporter: '',
     });
   }

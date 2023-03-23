@@ -16,6 +16,7 @@
               [langEntries]="plngEntries"
               [typeEntries]="plptEntries"
               [name]="place.value"
+              noAssertion="true"
               (nameChange)="onNameChange($event)"
             ></cadmus-refs-proper-name>
           </div>
@@ -314,23 +315,25 @@
 
           <!-- lastSeen -->
           <div>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              formControlName="lastSeen"
-            />
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error
-              i18n
-              *ngIf="
-                $any(date).errors?.required && (date.dirty || date.touched)
-              "
-              >last seen required</mat-error
-            >
+            <mat-form-field>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="lastSeen"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(date).errors?.required && (date.dirty || date.touched)
+                "
+                >last seen required</mat-error
+              >
+            </mat-form-field>
           </div>
         </mat-tab>
 

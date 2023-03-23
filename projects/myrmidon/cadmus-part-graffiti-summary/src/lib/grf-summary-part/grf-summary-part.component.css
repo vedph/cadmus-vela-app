@@ -19,3 +19,7 @@ fieldset {
 legend {
   color: silver;
 }
+th {
+  color: silver;
+  text-align: left;
+}
