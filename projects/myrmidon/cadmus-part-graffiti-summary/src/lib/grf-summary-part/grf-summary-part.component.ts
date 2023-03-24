@@ -52,6 +52,7 @@ export class GrfSummaryPartComponent
 
   public editedStateIndex: number;
   public editedState?: GrfSupportState;
+  public initialPlace?: ProperName;
 
   // flags
   public featFlags$: Observable<Flag[]>;
@@ -263,7 +264,8 @@ export class GrfSummaryPartComponent
       this.form.reset();
       return;
     }
-    this.place.setValue(part.place);
+    this.initialPlace = part.place;
+    // this.place.setValue(part.place);
     this.supportType.setValue(part.supportType);
     this.objectType.setValue(part.objectType || null);
     this.hasOriginalFn.setValue(part.originalFn ? true : false);
