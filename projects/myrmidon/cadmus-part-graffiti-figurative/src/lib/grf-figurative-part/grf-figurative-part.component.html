@@ -53,7 +53,7 @@
         <fieldset id="type-set">
           <legend i18n>figure type</legend>
           <div id="fig-type">
-            {{ type.value }}
+            {{ type.value?.value }}
           </div>
           <cadmus-thesaurus-tree
             *ngIf="typEntries?.length"
@@ -75,6 +75,7 @@
       </div>
 
       <!-- note -->
+      <br>
       <div>
         <mat-form-field class="long-text">
           <mat-label i18n>note</mat-label>

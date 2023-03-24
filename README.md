@@ -31,6 +31,7 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2023-03-24: various fixes.
 - 2023-03-23:
   - updated Angular.
   - fixed port number.
