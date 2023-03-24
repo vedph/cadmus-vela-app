@@ -21,5 +21,9 @@ legend {
 }
 th {
   color: silver;
+  font-weight: normal;
   text-align: left;
+}
+.date {
+  width: 12em;
 }

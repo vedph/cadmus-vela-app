@@ -269,11 +269,11 @@
             (dateChange)="onDateChange($event)"
           ></cadmus-refs-historical-date>
 
-          <div class="form-row">
-            <!-- figDescription -->
-            <mat-form-field>
+          <!-- figDescription -->
+          <div>
+            <mat-form-field class="long-text">
               <mat-label i18n>figurative dsc.</mat-label>
-              <input matInput [formControl]="figDescription" />
+              <textarea matInput [formControl]="figDescription"></textarea>
               <mat-error
                 i18n
                 *ngIf="
@@ -291,11 +291,13 @@
                 >figurative dsc. too long</mat-error
               >
             </mat-form-field>
+          </div>
 
-            <!-- frameDescription -->
-            <mat-form-field>
+          <!-- frameDescription -->
+          <div>
+            <mat-form-field class="long-text">
               <mat-label i18n>frame dsc.</mat-label>
-              <input matInput [formControl]="frameDescription" />
+              <textarea matInput [formControl]="frameDescription"></textarea>
               <mat-error
                 i18n
                 *ngIf="
@@ -317,7 +319,7 @@
 
           <!-- lastSeen -->
           <div>
-            <mat-form-field>
+            <mat-form-field class="date">
               <input
                 matInput
                 [matDatepicker]="picker"
@@ -404,6 +406,7 @@
               [stateEntries]="stateEntries"
               [state]="editedState"
               (stateChange)="saveState($event)"
+              (editorClose)="closeState()"
             ></cadmus-grf-support-state>
           </mat-expansion-panel>
         </mat-tab>

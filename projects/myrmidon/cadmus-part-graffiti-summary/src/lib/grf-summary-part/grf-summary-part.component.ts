@@ -361,15 +361,21 @@ export class GrfSummaryPartComponent
   }
 
   public saveState(state: GrfSupportState): void {
-    const states = [...this.states.value, state].sort((a, b) => {
-      if (a.date > b.date) {
-        return 1;
-      } else if (a.date < b.date) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
+    let states: GrfSupportState[];
+    if (this.editedStateIndex === -1) {
+      states = [...this.states.value, state].sort((a, b) => {
+        if (a.date > b.date) {
+          return 1;
+        } else if (a.date < b.date) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    } else {
+      states = [...this.states.value];
+      states.splice(this.editedStateIndex, 1, state);
+    }
     this.states.setValue(states);
     this.states.markAsDirty();
     this.states.updateValueAndValidity();
