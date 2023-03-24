@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Observable, take } from 'rxjs';
 
+import { DialogService } from '@myrmidon/ng-mat-tools';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { PhysicalSize } from '@myrmidon/cadmus-mat-physical-size';
@@ -22,7 +23,6 @@ import {
   GrfSupportState,
   GRF_SUMMARY_PART_TYPEID,
 } from '../grf-summary-part';
-import { DialogService } from '@myrmidon/ng-mat-tools';
 
 function entryToFlag(entry: ThesaurusEntry): Flag {
   return {

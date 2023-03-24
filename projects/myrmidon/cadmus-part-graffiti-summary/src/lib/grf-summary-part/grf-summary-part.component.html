@@ -105,7 +105,7 @@
             </mat-form-field>
           </div>
 
-          <div>
+          <div class="form-row">
             <!-- currentFn (bound) -->
             <mat-form-field *ngIf="supfEntries?.length">
               <mat-label i18n>current function</mat-label>
@@ -151,7 +151,7 @@
             >
 
             <!-- originalFn (bound) -->
-            <mat-form-field *ngIf="supfEntries?.length">
+            <mat-form-field *ngIf="supfEntries?.length && hasOriginalFn.value">
               <mat-label i18n>original function</mat-label>
               <mat-select [formControl]="originalFn">
                 <mat-option *ngFor="let e of supfEntries" [value]="e.id">{{
@@ -160,7 +160,7 @@
               </mat-select>
             </mat-form-field>
             <!-- originalFn (free) -->
-            <mat-form-field *ngIf="!supfEntries?.length">
+            <mat-form-field *ngIf="!supfEntries?.length && hasOriginalFn.value">
               <mat-label i18n>original function</mat-label>
               <input matInput [formControl]="originalFn" />
               <mat-error

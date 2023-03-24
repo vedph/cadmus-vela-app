@@ -6,8 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ThesaurusEntry } from '@myrmidon/cadmus-core';
+
 import { GrfSupportState } from '../grf-summary-part';
-import { GrfSummaryPartComponent } from '../grf-summary-part/grf-summary-part.component';
 
 /**
  * Editor for GrfSupportState.
