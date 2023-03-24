@@ -16,7 +16,7 @@
               [langEntries]="plngEntries"
               [typeEntries]="plptEntries"
               [name]="place.value"
-              noAssertion="true"
+              [noAssertion]="true"
               (nameChange)="onNameChange($event)"
             ></cadmus-refs-proper-name>
           </div>
@@ -269,49 +269,51 @@
             (dateChange)="onDateChange($event)"
           ></cadmus-refs-historical-date>
 
-          <!-- figDescription -->
-          <mat-form-field>
-            <mat-label i18n>figurative dsc.</mat-label>
-            <input matInput [formControl]="figDescription" />
-            <mat-error
-              i18n
-              *ngIf="
-                $any(figDescription).errors?.required &&
-                (figDescription.dirty || figDescription.touched)
-              "
-              >figurative dsc. required</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(figDescription).errors?.maxLength &&
-                (figDescription.dirty || figDescription.touched)
-              "
-              >figurative dsc. too long</mat-error
-            >
-          </mat-form-field>
+          <div class="form-row">
+            <!-- figDescription -->
+            <mat-form-field>
+              <mat-label i18n>figurative dsc.</mat-label>
+              <input matInput [formControl]="figDescription" />
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(figDescription).errors?.required &&
+                  (figDescription.dirty || figDescription.touched)
+                "
+                >figurative dsc. required</mat-error
+              >
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(figDescription).errors?.maxLength &&
+                  (figDescription.dirty || figDescription.touched)
+                "
+                >figurative dsc. too long</mat-error
+              >
+            </mat-form-field>
 
-          <!-- frameDescription -->
-          <mat-form-field>
-            <mat-label i18n>frame dsc.</mat-label>
-            <input matInput [formControl]="frameDescription" />
-            <mat-error
-              i18n
-              *ngIf="
-                $any(frameDescription).errors?.required &&
-                (frameDescription.dirty || frameDescription.touched)
-              "
-              >frame dsc. required</mat-error
-            >
-            <mat-error
-              i18n
-              *ngIf="
-                $any(frameDescription).errors?.maxLength &&
-                (frameDescription.dirty || frameDescription.touched)
-              "
-              >frame dsc. too long</mat-error
-            >
-          </mat-form-field>
+            <!-- frameDescription -->
+            <mat-form-field>
+              <mat-label i18n>frame dsc.</mat-label>
+              <input matInput [formControl]="frameDescription" />
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(frameDescription).errors?.required &&
+                  (frameDescription.dirty || frameDescription.touched)
+                "
+                >frame dsc. required</mat-error
+              >
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(frameDescription).errors?.maxLength &&
+                  (frameDescription.dirty || frameDescription.touched)
+                "
+                >frame dsc. too long</mat-error
+              >
+            </mat-form-field>
+          </div>
 
           <!-- lastSeen -->
           <div>
