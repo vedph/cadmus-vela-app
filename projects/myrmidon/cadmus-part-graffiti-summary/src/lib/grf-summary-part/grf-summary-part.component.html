@@ -11,7 +11,8 @@
         <!-- LOCATION -->
         <mat-tab i18n-label label="location">
           <!-- place -->
-          <div>
+          <fieldset>
+            <legend i18n>place</legend>
             <cadmus-refs-proper-name
               [langEntries]="plngEntries"
               [typeEntries]="plptEntries"
@@ -19,7 +20,7 @@
               [noAssertion]="true"
               (nameChange)="onNameChange($event)"
             ></cadmus-refs-proper-name>
-          </div>
+          </fieldset>
 
           <!-- indoor -->
           <mat-checkbox i18n [formControl]="indoor">indoor</mat-checkbox>
