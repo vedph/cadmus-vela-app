@@ -6,6 +6,9 @@
       "@myrmidon/cadmus-part-graffiti-figurative": [
         "dist/myrmidon/cadmus-part-graffiti-figurative"
       ],
+      "@myrmidon/cadmus-part-graffiti-localization": [
+        "dist/myrmidon/cadmus-part-graffiti-localization"
+      ],
       "@myrmidon/cadmus-part-graffiti-pg": [
         "dist/myrmidon/cadmus-part-graffiti-pg"
       ],

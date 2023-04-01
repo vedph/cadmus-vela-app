@@ -9,9 +9,9 @@ import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import {
-  GrfSummaryPartFeatureComponent,
-  GRF_SUMMARY_PART_TYPEID,
-} from '@myrmidon/cadmus-part-graffiti-summary';
+  GRF_LOCALIZATION_PART_TYPEID,
+  GrfLocalizationPartFeatureComponent,
+} from '@myrmidon/cadmus-part-graffiti-localization';
 import {
   GrfTechniquePartFeatureComponent,
   GRF_TECHNIQUE_PART_TYPEID,
@@ -27,9 +27,9 @@ import {
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
-    path: `${GRF_SUMMARY_PART_TYPEID}/:pid`,
+    path: `${GRF_LOCALIZATION_PART_TYPEID}/:pid`,
     pathMatch: 'full',
-    component: GrfSummaryPartFeatureComponent,
+    component: GrfLocalizationPartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
   {

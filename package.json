@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-sum": "ng build @myrmidon/cadmus-part-graffiti-summary",
+    "build-loc": "ng build @myrmidon/cadmus-part-graffiti-localization",
     "build-tec": "ng build @myrmidon/cadmus-part-graffiti-technique",
     "build-wri": "ng build @myrmidon/cadmus-part-graffiti-writing",
     "build-fig": "ng build @myrmidon/cadmus-part-graffiti-figurative",
