@@ -13,6 +13,10 @@ import {
   GrfLocalizationPartFeatureComponent,
 } from '@myrmidon/cadmus-part-graffiti-localization';
 import {
+  GRF_SUPPORT_PART_TYPEID,
+  GrfSupportPartFeatureComponent,
+} from '@myrmidon/cadmus-part-graffiti-support';
+import {
   GrfTechniquePartFeatureComponent,
   GRF_TECHNIQUE_PART_TYPEID,
 } from '@myrmidon/cadmus-part-graffiti-technique';
@@ -30,6 +34,12 @@ export const RouterModuleForChild = RouterModule.forChild([
     path: `${GRF_LOCALIZATION_PART_TYPEID}/:pid`,
     pathMatch: 'full',
     component: GrfLocalizationPartFeatureComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
+  {
+    path: `${GRF_SUPPORT_PART_TYPEID}/:pid`,
+    pathMatch: 'full',
+    component: GrfSupportPartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
   {
