@@ -33,6 +33,6 @@ export class GrfFigurativePartFeatureComponent
   }
 
   protected override getReqThesauriIds(): string[] {
-    return ['grf-fig-frame-types', 'grf-fig-types', 'grf-fig-features'];
+    return ['grf-figurative-types'];
   }
 }

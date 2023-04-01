@@ -7,83 +7,42 @@
       <mat-card-title i18n>Figurative Part</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div>
-        <!-- frameType (bound) -->
-        <mat-form-field *ngIf="fraEntries?.length">
-          <mat-label i18n>frame type</mat-label>
-          <mat-select [formControl]="frameType">
-            <mat-option *ngFor="let e of fraEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
-          </mat-select>
-          <mat-error
-            i18n
-            *ngIf="
-              $any(frameType).errors?.required &&
-              (frameType.dirty || frameType.touched)
-            "
-            >frame type required</mat-error
-          >
-        </mat-form-field>
-        <!-- frameType (free) -->
-        <mat-form-field *ngIf="!fraEntries?.length">
-          <mat-label i18n>frame type</mat-label>
-          <input matInput [formControl]="frameType" />
-          <mat-error
-            i18n
-            *ngIf="
-              $any(frameType).errors?.required &&
-              (frameType.dirty || frameType.touched)
-            "
-            >frame type required</mat-error
-          >
-          <mat-error
-            i18n
-            *ngIf="
-              $any(frameType).errors?.maxLength &&
-              (frameType.dirty || frameType.touched)
-            "
-            >frame type too long</mat-error
-          >
-        </mat-form-field>
-      </div>
-
       <div id="type-container">
-        <!-- type -->
+        <!-- types picker -->
         <fieldset id="type-set">
           <legend i18n>figure type</legend>
-          <div id="fig-type">
-            {{ type.value?.value }}
-          </div>
           <cadmus-thesaurus-tree
-            *ngIf="typEntries?.length"
-            [entries]="typEntries"
+            *ngIf="typeEntries?.length"
+            [entries]="typeEntries"
             rootLabel="fig.types"
+            i18n-rootLabel
             [renderLabel]="renderLabel"
             (entryChange)="onTypeChange($event)"
           ></cadmus-thesaurus-tree>
         </fieldset>
 
-        <!-- features -->
-        <fieldset id="feat-set">
-          <legend i18n>figurative features</legend>
-          <cadmus-ui-flags-picker
-            [flags]="featFlags$ | async"
-            (flagsChange)="onFeatureFlagsChange($event)"
-          ></cadmus-ui-flags-picker>
+        <!-- types -->
+        <fieldset id="sel-types">
+          <legend i18n>selected types</legend>
+          <ol>
+            <li *ngFor="let e of types.value">{{ e.value }}</li>
+          </ol>
         </fieldset>
       </div>
 
-      <!-- note -->
-      <br>
+      <!-- description -->
+      <br />
       <div>
         <mat-form-field class="long-text">
-          <mat-label i18n>note</mat-label>
-          <textarea matInput [formControl]="note"></textarea>
+          <mat-label i18n>description</mat-label>
+          <textarea matInput [formControl]="description"></textarea>
           <mat-error
             i18n
-            *ngIf="$any(note).errors?.maxLength && (note.dirty || note.touched)"
-            >note too long</mat-error
+            *ngIf="
+              $any(description).errors?.maxLength &&
+              (description.dirty || description.touched)
+            "
+            >description too long</mat-error
           >
         </mat-form-field>
       </div>

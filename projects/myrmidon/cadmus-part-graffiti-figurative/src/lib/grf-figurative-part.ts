@@ -4,10 +4,8 @@ import { Part } from '@myrmidon/cadmus-core';
  * The GrfFigurativePart model.
  */
 export interface GrfFigurativePart extends Part {
-  frameType: string;
-  type: string;
-  features?: string[];
-  note?: string;
+  types: string[];
+  description?: string;
 }
 
 /**
@@ -35,8 +33,7 @@ export const GRF_FIGURATIVE_PART_SCHEMA = {
     'creatorId',
     'timeModified',
     'userId',
-    'frameType',
-    'type',
+    'types',
   ],
   properties: {
     timeCreated: {
@@ -69,19 +66,13 @@ export const GRF_FIGURATIVE_PART_SCHEMA = {
       type: ['string', 'null'],
       pattern: '^([a-z][-0-9a-z._]*)?$',
     },
-    frameType: {
-      type: 'string',
-    },
-    type: {
-      type: 'string',
-    },
-    features: {
+    types: {
       type: 'array',
       items: {
         type: 'string',
       },
     },
-    note: {
+    description: {
       type: 'string',
     },
   },
