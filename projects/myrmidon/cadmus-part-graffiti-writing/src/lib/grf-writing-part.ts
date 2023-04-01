@@ -7,9 +7,16 @@ import { DecoratedCount } from '@myrmidon/cadmus-refs-decorated-counts';
 export interface GrfWritingPart extends Part {
   system: string;
   languages: string[];
-  type: string;
+  script: string;
+  casing: string;
+  scriptFeatures?: string[];
+  letterFeatures?: string[];
   counts?: DecoratedCount[];
-  features?: string[];
+  hasRuling?: boolean;
+  ruling?: string;
+  hasRubrics?: boolean;
+  rubrics?: string;
+  hasProse?: boolean;
   hasPoetry?: boolean;
   metres?: string[];
 }
@@ -39,7 +46,8 @@ export const GRF_WRITING_PART_SCHEMA = {
     'userId',
     'system',
     'languages',
-    'type',
+    'script',
+    'casing'
   ],
   properties: {
     timeCreated: {
@@ -81,8 +89,23 @@ export const GRF_WRITING_PART_SCHEMA = {
         type: 'string',
       },
     },
-    type: {
+    script: {
       type: 'string',
+    },
+    casing: {
+      type: 'string',
+    },
+    scriptFeatures: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    letterFeatures: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
     },
     counts: {
       type: 'array',
@@ -105,11 +128,20 @@ export const GRF_WRITING_PART_SCHEMA = {
         },
       },
     },
-    features: {
-      type: 'array',
-      items: {
-        type: 'string',
-      },
+    hasRuling: {
+      type: 'boolean',
+    },
+    ruling: {
+      type: 'string',
+    },
+    hasRubrics: {
+      type: 'boolean',
+    },
+    rubrics: {
+      type: 'string',
+    },
+    hasProse: {
+      type: 'boolean',
     },
     hasPoetry: {
       type: 'boolean',

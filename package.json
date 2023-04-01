@@ -15,7 +15,7 @@
     "build-wri": "ng build @myrmidon/cadmus-part-graffiti-writing",
     "build-fig": "ng build @myrmidon/cadmus-part-graffiti-figurative",
     "build-pg": "ng build @myrmidon/cadmus-part-graffiti-pg",
-    "build-lib": "npm run build-sum && npm run build-tec && npm run build-wri && npm run build-fig && npm run build-pg"
+    "build-lib": "npm run build-loc && npm run build-sup && npm run build-fra && npm run build-sta && npm run build-tec && npm run build-wri && npm run build-fig && npm run build-pg"
   },
   "private": true,
   "dependencies": {

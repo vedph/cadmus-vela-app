@@ -36,10 +36,12 @@ export class GrfWritingPartFeatureComponent
     return [
       'grf-writing-systems',
       'grf-writing-languages',
-      'grf-writing-types',
+      'grf-writing-scripts',
+      'grf-writing-casing',
+      'grf-writing-script-features',
+      'grf-writing-letter-features',
       'grf-writing-count-ids',
       'grf-writing-count-tags',
-      'grf-writing-features',
       'grf-writing-metres',
     ];
   }

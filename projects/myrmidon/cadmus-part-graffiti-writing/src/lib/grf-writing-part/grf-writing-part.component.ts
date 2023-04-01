@@ -6,6 +6,7 @@ import {
   FormGroup,
   UntypedFormGroup,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
@@ -13,7 +14,6 @@ import { DecoratedCount } from '@myrmidon/cadmus-refs-decorated-counts';
 import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 import { Flag, FlagsPickerAdapter } from '@myrmidon/cadmus-ui-flags-picker';
 import { NgToolsValidators } from '@myrmidon/ng-tools';
-import { Observable } from 'rxjs';
 
 import { GrfWritingPart, GRF_WRITING_PART_TYPEID } from '../grf-writing-part';
 
@@ -26,9 +26,9 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
 
 /**
  * GrfWriting part editor component.
- * Thesauri: grf-writing-systems, grf-writing-languages, grf-writing-types,
- * grf-writing-count-ids, grf-writing-count-tags, grf-writing-features,
- * grf-writing-metres.
+ * Thesauri: grf-writing-systems, grf-writing-languages, grf-writing-scripts,
+ * grf-writing-casing, grf-writing-script-features, grf-writing-letter-features,
+ * grf-writing-count-ids, grf-writing-count-tags, grf-writing-metres.
  */
 @Component({
   selector: 'cadmus-grf-writing-part',
@@ -40,13 +40,15 @@ export class GrfWritingPartComponent
   implements OnInit
 {
   private _lngEntries: ThesaurusEntry[];
-  private _featEntries: ThesaurusEntry[];
+  private _scrFeatEntries: ThesaurusEntry[];
+  private _letFeatEntries: ThesaurusEntry[];
   private _mtrEntries: ThesaurusEntry[];
   private readonly _flagAdapter: FlagsPickerAdapter;
 
   // flags
   public lngFlags$: Observable<Flag[]>;
-  public featFlags$: Observable<Flag[]>;
+  public scrFeatFlags$: Observable<Flag[]>;
+  public letFeatFlags$: Observable<Flag[]>;
   public mtrFlags$: Observable<Flag[]>;
 
   // grf-writing-systems
@@ -67,27 +69,45 @@ export class GrfWritingPartComponent
     );
   }
 
-  // grf-writing-types
-  public typEntries?: ThesaurusEntry[];
+  // grf-writing-scripts
+  public scrEntries?: ThesaurusEntry[];
+
+  // grf-writing-casing
+  public caseEntries?: ThesaurusEntry[];
 
   // grf-writing-count-ids
-  public cntdEntries?: ThesaurusEntry[];
+  public cntiEntries?: ThesaurusEntry[];
 
   // grf-writing-count-tags
   public cnttEntries?: ThesaurusEntry[];
 
-  // grf-writing-features
-  public get featEntries(): ThesaurusEntry[] | undefined {
-    return this._featEntries;
+  // grf-writing-script-features
+  public get scrFeatEntries(): ThesaurusEntry[] | undefined {
+    return this._scrFeatEntries;
   }
-  public set featEntries(value: ThesaurusEntry[] | undefined) {
-    if (this._featEntries === value) {
+  public set scrFeatEntries(value: ThesaurusEntry[] | undefined) {
+    if (this._scrFeatEntries === value) {
       return;
     }
-    this._featEntries = value || [];
+    this._scrFeatEntries = value || [];
     this._flagAdapter.setSlotFlags(
-      'features',
-      this._featEntries.map(entryToFlag)
+      'script-features',
+      this._scrFeatEntries.map(entryToFlag)
+    );
+  }
+
+  // grf-writing-letter-features
+  public get letFeatEntries(): ThesaurusEntry[] | undefined {
+    return this._letFeatEntries;
+  }
+  public set letFeatEntries(value: ThesaurusEntry[] | undefined) {
+    if (this._letFeatEntries === value) {
+      return;
+    }
+    this._letFeatEntries = value || [];
+    this._flagAdapter.setSlotFlags(
+      'letter-features',
+      this._letFeatEntries.map(entryToFlag)
     );
   }
 
@@ -106,9 +126,16 @@ export class GrfWritingPartComponent
   // form
   public system: FormControl<string>;
   public languages: FormControl<Flag[]>;
-  public type: FormControl<string>;
+  public script: FormControl<string>;
+  public casing: FormControl<string>;
+  public scrFeatures: FormControl<Flag[]>;
+  public letFeatures: FormControl<Flag[]>;
   public counts: FormControl<DecoratedCount[]>;
-  public features: FormControl<Flag[]>;
+  public hasRuling: FormControl<boolean>;
+  public ruling: FormControl<string | null>;
+  public hasRubrics: FormControl<boolean>;
+  public rubrics: FormControl<string | null>;
+  public hasProse: FormControl<boolean>;
   public hasPoetry: FormControl<boolean>;
   public metres: FormControl<Flag[]>;
 
@@ -116,11 +143,13 @@ export class GrfWritingPartComponent
     super(authService, formBuilder);
     // flags
     this._lngEntries = [];
-    this._featEntries = [];
+    this._scrFeatEntries = [];
+    this._letFeatEntries = [];
     this._mtrEntries = [];
     this._flagAdapter = new FlagsPickerAdapter();
     this.lngFlags$ = this._flagAdapter.selectFlags('languages');
-    this.featFlags$ = this._flagAdapter.selectFlags('features');
+    this.scrFeatFlags$ = this._flagAdapter.selectFlags('script-features');
+    this.letFeatFlags$ = this._flagAdapter.selectFlags('letter-features');
     this.mtrFlags$ = this._flagAdapter.selectFlags('metres');
     // form
     this.system = formBuilder.control('', {
@@ -131,12 +160,19 @@ export class GrfWritingPartComponent
       validators: NgToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
-    this.type = formBuilder.control('', {
+    this.script = formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
       nonNullable: true,
     });
+    this.casing = formBuilder.control('', { nonNullable: true });
+    this.scrFeatures = formBuilder.control([], { nonNullable: true });
+    this.letFeatures = formBuilder.control([], { nonNullable: true });
     this.counts = formBuilder.control([], { nonNullable: true });
-    this.features = formBuilder.control([], { nonNullable: true });
+    this.hasRuling = formBuilder.control(false, { nonNullable: true });
+    this.ruling = formBuilder.control(null, { nonNullable: true });
+    this.hasRubrics = formBuilder.control(false, { nonNullable: true });
+    this.rubrics = formBuilder.control(null, { nonNullable: true });
+    this.hasProse = formBuilder.control(false, { nonNullable: true });
     this.hasPoetry = formBuilder.control(false, { nonNullable: true });
     this.metres = formBuilder.control([], { nonNullable: true });
   }
@@ -149,9 +185,16 @@ export class GrfWritingPartComponent
     return formBuilder.group({
       system: this.system,
       languages: this.languages,
-      type: this.type,
+      script: this.script,
+      casing: this.casing,
+      scrFeatures: this.scrFeatures,
+      letFeatures: this.letFeatures,
       counts: this.counts,
-      features: this.features,
+      hasRuling: this.hasRuling,
+      ruling: this.ruling,
+      hasRubrics: this.hasRubrics,
+      rubrics: this.rubrics,
+      hasProse: this.hasProse,
       hasPoetry: this.hasPoetry,
       metres: this.metres,
     });
@@ -170,29 +213,41 @@ export class GrfWritingPartComponent
     } else {
       this.lngEntries = undefined;
     }
-    key = 'grf-writing-types';
+    key = 'grf-writing-scripts';
     if (this.hasThesaurus(key)) {
-      this.typEntries = thesauri[key].entries;
+      this.scrEntries = thesauri[key].entries;
     } else {
-      this.typEntries = undefined;
+      this.scrEntries = undefined;
+    }
+    key = 'grf-writing-casing';
+    if (this.hasThesaurus(key)) {
+      this.caseEntries = thesauri[key].entries;
+    } else {
+      this.caseEntries = undefined;
+    }
+    key = 'grf-writing-script-features';
+    if (this.hasThesaurus(key)) {
+      this.scrFeatEntries = thesauri[key].entries;
+    } else {
+      this.scrFeatEntries = undefined;
+    }
+    key = 'grf-writing-letter-features';
+    if (this.hasThesaurus(key)) {
+      this.letFeatEntries = thesauri[key].entries;
+    } else {
+      this.letFeatEntries = undefined;
     }
     key = 'grf-writing-count-ids';
     if (this.hasThesaurus(key)) {
-      this.cntdEntries = thesauri[key].entries;
+      this.cntiEntries = thesauri[key].entries;
     } else {
-      this.cntdEntries = undefined;
+      this.cntiEntries = undefined;
     }
     key = 'grf-writing-count-tags';
     if (this.hasThesaurus(key)) {
       this.cnttEntries = thesauri[key].entries;
     } else {
       this.cnttEntries = undefined;
-    }
-    key = 'grf-writing-features';
-    if (this.hasThesaurus(key)) {
-      this.featEntries = thesauri[key].entries;
-    } else {
-      this.featEntries = undefined;
     }
     key = 'grf-writing-metres';
     if (this.hasThesaurus(key)) {
@@ -211,11 +266,26 @@ export class GrfWritingPartComponent
     this.languages.setValue(
       this._flagAdapter.setSlotChecks('languages', part.languages)
     );
-    this.type.setValue(part.type);
-    this.counts.setValue(part.counts || []);
-    this.features.setValue(
-      this._flagAdapter.setSlotChecks('features', part.languages)
+    this.script.setValue(part.script);
+    this.casing.setValue(part.casing);
+    this.scrFeatures.setValue(
+      this._flagAdapter.setSlotChecks(
+        'script-features',
+        part.scriptFeatures || []
+      )
     );
+    this.letFeatures.setValue(
+      this._flagAdapter.setSlotChecks(
+        'letter-features',
+        part.letterFeatures || []
+      )
+    );
+    this.counts.setValue(part.counts || []);
+    this.hasRuling.setValue(part.hasRuling || false);
+    this.ruling.setValue(part.ruling || null);
+    this.hasRubrics.setValue(part.hasRubrics || false);
+    this.rubrics.setValue(part.rubrics || null);
+    this.hasProse.setValue(part.hasProse || false);
     this.hasPoetry.setValue(part.hasPoetry || false);
     this.metres.setValue(
       this._flagAdapter.setSlotChecks('metres', part.languages)
@@ -238,13 +308,27 @@ export class GrfWritingPartComponent
     part.system = this.system.value?.trim();
     part.languages =
       this._flagAdapter.getOptionalCheckedFlagIds('languages') || [];
-    part.type = this.type.value?.trim();
+    part.script = this.script.value?.trim();
+    part.casing = this.casing.value?.trim();
+    part.scriptFeatures =
+      this._flagAdapter.getOptionalCheckedFlagIds('script-features') || [];
+    part.letterFeatures =
+      this._flagAdapter.getOptionalCheckedFlagIds('letter-features') || [];
     part.counts = this.counts.value.length ? this.counts.value : undefined;
-    part.features =
-      this._flagAdapter.getOptionalCheckedFlagIds('features') || [];
+    part.hasRuling = this.hasRuling.value ? true : undefined;
+    part.ruling = this.ruling.value?.trim();
+    part.hasRubrics = this.hasRubrics.value ? true : undefined;
+    part.rubrics = this.rubrics.value?.trim();
+    part.hasProse = this.hasProse.value ? true : undefined;
     part.hasPoetry = this.hasPoetry.value ? true : undefined;
     part.metres = this._flagAdapter.getOptionalCheckedFlagIds('metres') || [];
     return part;
+  }
+
+  public onCountsChange(counts: DecoratedCount[]): void {
+    this.counts.setValue(counts);
+    this.counts.markAsDirty();
+    this.counts.updateValueAndValidity();
   }
 
   public onLanguageFlagsChange(flags: Flag[]): void {
@@ -254,11 +338,18 @@ export class GrfWritingPartComponent
     this.languages.updateValueAndValidity();
   }
 
-  public onFeatureFlagsChange(flags: Flag[]): void {
-    this._flagAdapter.setSlotFlags('features', flags, true);
-    this.features.setValue(flags);
-    this.features.markAsDirty();
-    this.features.updateValueAndValidity();
+  public onScrFeatureFlagsChange(flags: Flag[]): void {
+    this._flagAdapter.setSlotFlags('script-features', flags, true);
+    this.scrFeatures.setValue(flags);
+    this.scrFeatures.markAsDirty();
+    this.scrFeatures.updateValueAndValidity();
+  }
+
+  public onLetFeatureFlagsChange(flags: Flag[]): void {
+    this._flagAdapter.setSlotFlags('letter-features', flags, true);
+    this.letFeatures.setValue(flags);
+    this.letFeatures.markAsDirty();
+    this.letFeatures.updateValueAndValidity();
   }
 
   public onMetreFlagsChange(flags: Flag[]): void {

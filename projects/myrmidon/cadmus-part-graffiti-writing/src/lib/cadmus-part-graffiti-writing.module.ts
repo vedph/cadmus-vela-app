@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
+import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
 import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
@@ -50,6 +51,7 @@ import { GrfWritingPartFeatureComponent } from './grf-writing-part-feature/grf-w
     NgToolsModule,
     // cadmus
     CadmusCoreModule,
+    CadmusRefsDecoratedCountsModule,
     CadmusStateModule,
     CadmusUiModule,
     CadmusUiFlagsPickerModule,
