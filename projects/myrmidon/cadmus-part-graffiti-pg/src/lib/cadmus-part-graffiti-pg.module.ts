@@ -28,6 +28,10 @@ import {
   GrfFigurativePartFeatureComponent,
   GRF_FIGURATIVE_PART_TYPEID,
 } from '@myrmidon/cadmus-part-graffiti-figurative';
+import {
+  GRF_FRAME_PART_TYPEID,
+  GrfFramePartFeatureComponent,
+} from '@myrmidon/cadmus-part-graffiti-frame';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
@@ -40,6 +44,12 @@ export const RouterModuleForChild = RouterModule.forChild([
     path: `${GRF_SUPPORT_PART_TYPEID}/:pid`,
     pathMatch: 'full',
     component: GrfSupportPartFeatureComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
+  {
+    path: `${GRF_FRAME_PART_TYPEID}/:pid`,
+    pathMatch: 'full',
+    component: GrfFramePartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
   {

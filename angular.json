@@ -332,6 +332,39 @@
           }
         }
       }
+    },
+    "@myrmidon/cadmus-part-graffiti-frame": {
+      "projectType": "library",
+      "root": "projects/myrmidon/cadmus-part-graffiti-frame",
+      "sourceRoot": "projects/myrmidon/cadmus-part-graffiti-frame/src",
+      "prefix": "cadmus",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/myrmidon/cadmus-part-graffiti-frame/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/myrmidon/cadmus-part-graffiti-frame/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/myrmidon/cadmus-part-graffiti-frame/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/myrmidon/cadmus-part-graffiti-frame/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

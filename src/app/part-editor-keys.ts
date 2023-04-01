@@ -26,11 +26,12 @@ import { EPI_SUPPORT_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-support
 import { EPI_WRITING_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-writing';
 import { EPI_LIGATURES_FRAGMENT_TYPEID } from '@myrmidon/cadmus-fr-epigraphy-ligatures';
 
+import { GRF_FIGURATIVE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-figurative/src/public-api';
+import { GRF_FRAME_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-frame/src/public-api';
 import { GRF_LOCALIZATION_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-localization/src/public-api';
 import { GRF_SUPPORT_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-support/src/public-api';
 import { GRF_TECHNIQUE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-technique/src/public-api';
 import { GRF_WRITING_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-writing/src/public-api';
-import { GRF_FIGURATIVE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-figurative/src/public-api';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
@@ -99,6 +100,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
     part: GRAFFITI,
   },
   [GRF_SUPPORT_PART_TYPEID]: {
+    part: GRAFFITI,
+  },
+  [GRF_FRAME_PART_TYPEID]: {
     part: GRAFFITI,
   },
   [GRF_TECHNIQUE_PART_TYPEID]: {

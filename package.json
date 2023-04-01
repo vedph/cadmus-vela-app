@@ -9,6 +9,7 @@
     "test": "ng test",
     "build-loc": "ng build @myrmidon/cadmus-part-graffiti-localization",
     "build-sup": "ng build @myrmidon/cadmus-part-graffiti-support",
+    "build-fra": "ng build @myrmidon/cadmus-part-graffiti-frame",
     "build-tec": "ng build @myrmidon/cadmus-part-graffiti-technique",
     "build-wri": "ng build @myrmidon/cadmus-part-graffiti-writing",
     "build-fig": "ng build @myrmidon/cadmus-part-graffiti-figurative",
