@@ -14,3 +14,8 @@
 .date {
   width: 12em;
 }
+th {
+  text-align: left;
+  color: silver;
+  font-weight: normal;
+}
