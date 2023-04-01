@@ -1,0 +1,8 @@
+<cadmus-current-item-bar></cadmus-current-item-bar>
+<cadmus-grf-states-part
+  [identity]="identity"
+  [data]="$any(data)"
+  (dataChange)="save($event)"
+  (editorClose)="close()"
+  (dirtyChange)="onDirtyChange($event)"
+></cadmus-grf-states-part>

@@ -15,6 +15,9 @@
       "@myrmidon/cadmus-part-graffiti-pg": [
         "dist/myrmidon/cadmus-part-graffiti-pg"
       ],
+      "@myrmidon/cadmus-part-graffiti-states": [
+        "dist/myrmidon/cadmus-part-graffiti-states"
+      ],
       "@myrmidon/cadmus-part-graffiti-summary": [
         "dist/myrmidon/cadmus-part-graffiti-summary"
       ],

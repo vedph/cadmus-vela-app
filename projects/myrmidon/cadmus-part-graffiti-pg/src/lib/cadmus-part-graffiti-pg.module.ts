@@ -32,6 +32,10 @@ import {
   GRF_FRAME_PART_TYPEID,
   GrfFramePartFeatureComponent,
 } from '@myrmidon/cadmus-part-graffiti-frame';
+import {
+  GRF_STATES_PART_TYPEID,
+  GrfStatesPartFeatureComponent,
+} from '@myrmidon/cadmus-part-graffiti-states';
 
 export const RouterModuleForChild = RouterModule.forChild([
   {
@@ -50,6 +54,12 @@ export const RouterModuleForChild = RouterModule.forChild([
     path: `${GRF_FRAME_PART_TYPEID}/:pid`,
     pathMatch: 'full',
     component: GrfFramePartFeatureComponent,
+    canDeactivate: [PendingChangesGuard],
+  },
+  {
+    path: `${GRF_STATES_PART_TYPEID}/:pid`,
+    pathMatch: 'full',
+    component: GrfStatesPartFeatureComponent,
     canDeactivate: [PendingChangesGuard],
   },
   {
