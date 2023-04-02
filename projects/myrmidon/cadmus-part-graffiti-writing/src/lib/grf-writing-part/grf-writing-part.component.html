@@ -173,7 +173,7 @@
               >has ruling</mat-checkbox
             >
             <div *ngIf="hasRuling.value">
-              <mat-form-field>
+              <mat-form-field class="long-text">
                 <mat-label i18n>ruling</mat-label>
                 <textarea matInput [formControl]="ruling"></textarea>
                 <mat-error
@@ -194,7 +194,7 @@
               >has rubrics</mat-checkbox
             >
             <div *ngIf="hasRubrics.value">
-              <mat-form-field>
+              <mat-form-field class="long-text">
                 <mat-label i18n>rubrics</mat-label>
                 <textarea matInput [formControl]="rubrics"></textarea>
                 <mat-error
