@@ -36,7 +36,8 @@ services:
       - cadmus-network
 
   cadmus-api:
-    image: vedph2020/cadmus-vela-api:1.0.2
+    image: vedph2020/cadmus-vela-api:1.0.3
+    container_name: cadmus-vela-api
     ports:
       # https://stackoverflow.com/questions/48669548/why-does-aspnet-core-start-on-port-80-from-within-docker
       - 19000:80
@@ -63,6 +64,7 @@ services:
 
   cadmus-app:
     image: vedph2020/cadmus-vela-app:0.0.5
+    container_name: cadmus-vela-app
     ports:
       - 4200:80
     depends_on:

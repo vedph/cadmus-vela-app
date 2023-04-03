@@ -3,6 +3,7 @@
 - [Cadmus Vela App](#cadmus-vela-app)
   - [Docker](#docker)
   - [History](#history)
+    - [1.0.0](#100)
     - [0.0.5](#005)
     - [0.0.4](#004)
     - [0.0.3](#003)
@@ -15,10 +16,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Docker
 
-Quick Docker image build:
+🐋 Quick Docker image build:
 
-1. update version in `env.js` and `ng build --configuration=production`.
-2. `docker build . -t vedph2020/cadmus-vela-app:0.0.5 -t vedph2020/cadmus-vela-app:latest` (replace with the current version).
+1. `npm run build-lib`.
+2. update version in `env.js` and `ng build --configuration=production`.
+3. `docker build . -t vedph2020/cadmus-vela-app:1.0.0 -t vedph2020/cadmus-vela-app:latest` (replace with the current version).
 
 You can spare a prod-specific image by just overwriting the [env.js](src/env.js) file in your [Docker compose script](docker-compose.yml) via a volume, e.g.. putting under `cadmus-app`:
 
@@ -31,6 +33,10 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+### 1.0.0
+
+- 2023-04-03: better styling.
+- 2023-04-02: completed parts refactoring.
 - 2023-03-24: various fixes.
 - 2023-03-23:
   - updated Angular.

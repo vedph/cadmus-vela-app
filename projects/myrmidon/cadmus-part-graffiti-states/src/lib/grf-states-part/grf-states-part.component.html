@@ -51,7 +51,7 @@
               {{ s.date | date : "yyyy-MM-dd" }}
             </td>
             <td>
-              {{ s.type }}
+              {{ s.type | flatLookup : stateEntries : "id" : "value" }}
             </td>
             <td>
               {{ s.reporter }}

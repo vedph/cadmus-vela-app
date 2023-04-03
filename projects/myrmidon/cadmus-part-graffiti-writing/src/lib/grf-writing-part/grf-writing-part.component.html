@@ -142,12 +142,15 @@
         <!-- FEATURES -->
         <mat-tab i18n-label label="features">
           <!-- counts -->
-          <cadmus-refs-decorated-counts
-            [idEntries]="cntiEntries"
-            [tagEntries]="cnttEntries"
-            [counts]="counts.value"
-            (countsChange)="onCountsChange($event)"
-          ></cadmus-refs-decorated-counts>
+          <fieldset>
+            <legend i18n>counts</legend>
+            <cadmus-refs-decorated-counts
+              [idEntries]="cntiEntries"
+              [tagEntries]="cnttEntries"
+              [counts]="counts.value"
+              (countsChange)="onCountsChange($event)"
+            ></cadmus-refs-decorated-counts>
+          </fieldset>
 
           <!-- script features -->
           <fieldset>

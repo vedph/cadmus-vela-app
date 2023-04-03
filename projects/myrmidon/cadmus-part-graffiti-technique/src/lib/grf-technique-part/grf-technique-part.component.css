@@ -6,6 +6,7 @@ fieldset {
   border: 1px solid silver;
   border-radius: 6px;
   padding: 6px;
+  margin-bottom: 8px;
 }
 legend {
   color: silver;
