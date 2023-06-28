@@ -3,6 +3,7 @@
 - [Cadmus Vela App](#cadmus-vela-app)
   - [Docker](#docker)
   - [History](#history)
+    - [2.0.0](#200)
     - [1.0.0](#100)
     - [0.0.5](#005)
     - [0.0.4](#004)
@@ -32,6 +33,12 @@ volumes:
 where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your host machine, and the portion of the value after colon is the path to `env.js` inside the container. In `env.js` you must ensure that `apiUrl` points to the correct API location, which in the default file is just `localhost` with a specific non-standard port.
 
 ## History
+
+### 2.0.0
+
+- 2023-06-28:
+  - updated Angular and packages.
+  - moved to PostgreSQL.
 
 ### 1.0.0
 
