@@ -35,17 +35,16 @@
     <!-- <button type="button" mat-button routerLink="/graph" *ngIf="logged">
       Graph
     </button> -->
-    <!-- thesauri menu -->
-    <button
-      type="button"
-      mat-button
-      routerLink="/thesauri"
-      *ngIf="
-        user && (user.roles.includes('admin') || user.roles.includes('editor'))
-      "
-    >
-      Thesauri
-    </button>
+    <!-- profile menu -->
+    <ng-container *ngIf="user && user.roles.includes('admin')">
+      <button type="button" mat-button [matMenuTriggerFor]="profileMenu">
+        Profile
+      </button>
+      <mat-menu #profileMenu>
+        <a mat-menu-item routerLink="/flags"> Flags </a>
+        <a mat-menu-item routerLink="/thesauri"> Thesauri </a>
+      </mat-menu>
+    </ng-container>
 
     <span class="tb-fill-remaining-space"></span>
 

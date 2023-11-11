@@ -80,6 +80,14 @@ const routes: Routes = [
       ),
     canActivate: [EditorGuardService],
   },
+  // cadmus - flags
+  {
+    path: 'flags',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-flags-pg').then(
+        (module) => module.CadmusFlagsPgModule
+      ),
+  },
   // cadmus - parts
   {
     path: 'items/:iid/general',

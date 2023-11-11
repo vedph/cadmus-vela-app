@@ -34,6 +34,11 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2023-11-11:
+  - ⚠️ upgraded to Angular 17.
+  - opted in flags editor.
+  - opted in thesauri import.
+
 ### 2.0.0
 
 - 2023-06-28:
