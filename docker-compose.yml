@@ -29,14 +29,14 @@ services:
 
   # Cadmus VeLA API
   cadmus-vela-api:
-    image: vedph2020/cadmus-vela-api:2.0.0
+    image: vedph2020/cadmus-vela-api:3.0.0
     container_name: cadmus-vela-api
     ports:
       # https://stackoverflow.com/questions/48669548/why-does-aspnet-core-start-on-port-80-from-within-docker
       - 5080:80
     depends_on:
       - cadmus-vela-mongo
-      - cadmus-vela-mysql
+      - cadmus-vela-pgsql
     environment:
       # for Windows use : as separator, for non Windows use __
       # (see https://github.com/aspnet/Configuration/issues/469)
@@ -53,7 +53,7 @@ services:
 
   # Cadmus VeLA App
   cadmus-app:
-    image: vedph2020/cadmus-vela-app:0.0.5
+    image: vedph2020/cadmus-vela-app:3.0.0
     container_name: cadmus-vela-app
     ports:
       - 4200:80
