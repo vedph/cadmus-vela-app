@@ -50,15 +50,6 @@
               >
             </mat-form-field>
 
-            <!-- scripts -->
-            <fieldset>
-              <legend i18n>scripts</legend>
-              <cadmus-ui-flags-picker
-                [flags]="scrFlags$ | async"
-                (flagsChange)="onScriptFlagsChange($event)"
-              />
-            </fieldset>
-
             <!-- casing (bound) -->
             <mat-form-field *ngIf="caseEntries?.length">
               <mat-label i18n>casing</mat-label>
@@ -97,7 +88,18 @@
                 >casing too long</mat-error
               >
             </mat-form-field>
-
+          </div>
+          <div>
+            <!-- scripts -->
+            <fieldset>
+              <legend i18n>scripts</legend>
+              <cadmus-ui-flags-picker
+                [flags]="scrFlags$ | async"
+                (flagsChange)="onScriptFlagsChange($event)"
+              />
+            </fieldset>
+          </div>
+          <div>
             <!-- languages -->
             <fieldset>
               <legend i18n>language(s)</legend>
