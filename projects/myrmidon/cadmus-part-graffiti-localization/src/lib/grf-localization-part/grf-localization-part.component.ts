@@ -10,7 +10,6 @@ import {
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { ProperName } from '@myrmidon/cadmus-refs-proper-name';
-import { DialogService } from '@myrmidon/ng-mat-tools';
 
 import {
   GRF_LOCALIZATION_PART_TYPEID,
@@ -33,6 +32,7 @@ export class GrfLocalizationPartComponent
   implements OnInit
 {
   public place: FormControl<ProperName | null>;
+  public period: FormControl<string>;
   public objectType: FormControl<string>;
   public function: FormControl<string>;
   public note: FormControl<string | null>;
@@ -42,6 +42,8 @@ export class GrfLocalizationPartComponent
 
   // grf-place-languages
   public plngEntries?: ThesaurusEntry[];
+  // grf-periods
+  public periodEntries?: ThesaurusEntry[];
   // grf-place-piece-types
   public plptEntries?: ThesaurusEntry[];
   // grf-support-object-types
@@ -49,14 +51,14 @@ export class GrfLocalizationPartComponent
   // grf-support-functions
   public suppFnEntries?: ThesaurusEntry[];
 
-  constructor(
-    authService: AuthJwtService,
-    formBuilder: FormBuilder,
-    private _dialog: DialogService
-  ) {
+  constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
     // form
     this.place = formBuilder.control(null, Validators.required);
+    this.period = formBuilder.control('', {
+      validators: [Validators.required, Validators.maxLength(50)],
+      nonNullable: true,
+    });
     this.objectType = formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
       nonNullable: true,
@@ -79,6 +81,7 @@ export class GrfLocalizationPartComponent
   protected buildForm(formBuilder: FormBuilder): FormGroup | UntypedFormGroup {
     return formBuilder.group({
       place: this.place,
+      period: this.period,
       objectType: this.objectType,
       function: this.function,
       note: this.note,
@@ -98,6 +101,12 @@ export class GrfLocalizationPartComponent
       this.plptEntries = thesauri[key].entries;
     } else {
       this.plptEntries = undefined;
+    }
+    key = 'grf-periods';
+    if (this.hasThesaurus(key)) {
+      this.periodEntries = thesauri[key].entries;
+    } else {
+      this.periodEntries = undefined;
     }
     key = 'grf-support-object-types';
     if (this.hasThesaurus(key)) {
@@ -119,6 +128,7 @@ export class GrfLocalizationPartComponent
       return;
     }
     this.initialPlace = part.place;
+    this.period.setValue(part.period);
     this.objectType.setValue(part.objectType);
     this.function.setValue(part.function);
     this.note.setValue(part.note || null);
@@ -141,6 +151,7 @@ export class GrfLocalizationPartComponent
       GRF_LOCALIZATION_PART_TYPEID
     ) as GrfLocalizationPart;
     part.place = this.place.value!;
+    part.period = this.period.value?.trim();
     part.objectType = this.objectType.value.trim();
     part.function = this.function.value.trim();
     part.note = this.note.value?.trim();

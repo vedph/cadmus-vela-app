@@ -24,6 +24,42 @@
       <!-- indoor -->
       <mat-checkbox i18n [formControl]="indoor">indoor</mat-checkbox>
 
+      <!-- period -->
+      <div>
+        <!-- period (bound) -->
+        <mat-form-field *ngIf="periodEntries?.length">
+          <mat-label>period</mat-label>
+          <mat-select [formControl]="period">
+            <mat-option *ngFor="let e of periodEntries" [value]="e.id">{{
+              e.value
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              $any(period).errors?.required && (period.dirty || period.touched)
+            "
+            >period required</mat-error
+          >
+        </mat-form-field>
+        <!-- period (free) -->
+        <mat-form-field *ngIf="!periodEntries?.length">
+          <mat-label>period</mat-label>
+          <input matInput [formControl]="period" />
+          <mat-error
+            *ngIf="
+              $any(period).errors?.required && (period.dirty || period.touched)
+            "
+            >period required</mat-error
+          >
+          <mat-error
+            *ngIf="
+              $any(period).errors?.maxLength && (period.dirty || period.touched)
+            "
+            >period too long</mat-error
+          >
+        </mat-form-field>
+      </div>
+
       <div class="form-row">
         <!-- objectType -->
         <!-- objectType (bound) -->

@@ -6,6 +6,7 @@ import { ProperName } from '@myrmidon/cadmus-refs-proper-name';
  */
 export interface GrfLocalizationPart extends Part {
   place: ProperName;
+  period: string;
   objectType: string;
   function: string;
   note?: string;
@@ -98,6 +99,9 @@ export const GRF_LOCALIZATION_PART_SCHEMA = {
           },
         },
       },
+    },
+    period: {
+      type: 'string'
     },
     objectType: {
       type: 'string',

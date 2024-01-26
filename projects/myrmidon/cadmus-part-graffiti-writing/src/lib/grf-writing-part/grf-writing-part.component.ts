@@ -40,6 +40,7 @@ export class GrfWritingPartComponent
   implements OnInit
 {
   private _lngEntries: ThesaurusEntry[];
+  private _scrEntries: ThesaurusEntry[];
   private _scrFeatEntries: ThesaurusEntry[];
   private _letFeatEntries: ThesaurusEntry[];
   private _mtrEntries: ThesaurusEntry[];
@@ -47,6 +48,7 @@ export class GrfWritingPartComponent
 
   // flags
   public lngFlags$: Observable<Flag[]>;
+  public scrFlags$: Observable<Flag[]>;
   public scrFeatFlags$: Observable<Flag[]>;
   public letFeatFlags$: Observable<Flag[]>;
   public mtrFlags$: Observable<Flag[]>;
@@ -70,7 +72,19 @@ export class GrfWritingPartComponent
   }
 
   // grf-writing-scripts
-  public scrEntries?: ThesaurusEntry[];
+  public get scrEntries(): ThesaurusEntry[] | undefined {
+    return this._scrEntries;
+  }
+  public set scrEntries(value: ThesaurusEntry[] | undefined) {
+    if (this._scrEntries === value) {
+      return;
+    }
+    this._scrEntries = value || [];
+    this._flagAdapter.setSlotFlags(
+      'scripts',
+      this._scrEntries.map(entryToFlag)
+    );
+  }
 
   // grf-writing-casing
   public caseEntries?: ThesaurusEntry[];
@@ -126,7 +140,7 @@ export class GrfWritingPartComponent
   // form
   public system: FormControl<string>;
   public languages: FormControl<Flag[]>;
-  public script: FormControl<string>;
+  public scripts: FormControl<Flag[]>;
   public casing: FormControl<string>;
   public scrFeatures: FormControl<Flag[]>;
   public letFeatures: FormControl<Flag[]>;
@@ -143,11 +157,13 @@ export class GrfWritingPartComponent
     super(authService, formBuilder);
     // flags
     this._lngEntries = [];
+    this._scrEntries = [];
     this._scrFeatEntries = [];
     this._letFeatEntries = [];
     this._mtrEntries = [];
     this._flagAdapter = new FlagsPickerAdapter();
     this.lngFlags$ = this._flagAdapter.selectFlags('languages');
+    this.scrFlags$ = this._flagAdapter.selectFlags('scripts');
     this.scrFeatFlags$ = this._flagAdapter.selectFlags('script-features');
     this.letFeatFlags$ = this._flagAdapter.selectFlags('letter-features');
     this.mtrFlags$ = this._flagAdapter.selectFlags('metres');
@@ -160,8 +176,8 @@ export class GrfWritingPartComponent
       validators: NgToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
-    this.script = formBuilder.control('', {
-      validators: [Validators.required, Validators.maxLength(100)],
+    this.scripts = formBuilder.control([], {
+      validators: NgToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
     this.casing = formBuilder.control('', { nonNullable: true });
@@ -185,7 +201,7 @@ export class GrfWritingPartComponent
     return formBuilder.group({
       system: this.system,
       languages: this.languages,
-      script: this.script,
+      scripts: this.scripts,
       casing: this.casing,
       scrFeatures: this.scrFeatures,
       letFeatures: this.letFeatures,
@@ -266,7 +282,9 @@ export class GrfWritingPartComponent
     this.languages.setValue(
       this._flagAdapter.setSlotChecks('languages', part.languages)
     );
-    this.script.setValue(part.script);
+    this.scripts.setValue(
+      this._flagAdapter.setSlotChecks('scripts', part.scripts)
+    );
     this.casing.setValue(part.casing);
     this.scrFeatures.setValue(
       this._flagAdapter.setSlotChecks(
@@ -308,7 +326,7 @@ export class GrfWritingPartComponent
     part.system = this.system.value?.trim();
     part.languages =
       this._flagAdapter.getOptionalCheckedFlagIds('languages') || [];
-    part.script = this.script.value?.trim();
+    part.scripts = this._flagAdapter.getOptionalCheckedFlagIds('scripts') || [];
     part.casing = this.casing.value?.trim();
     part.scriptFeatures =
       this._flagAdapter.getOptionalCheckedFlagIds('script-features') || [];
@@ -336,6 +354,13 @@ export class GrfWritingPartComponent
     this.languages.setValue(flags);
     this.languages.markAsDirty();
     this.languages.updateValueAndValidity();
+  }
+
+  public onScriptFlagsChange(flags: Flag[]): void {
+    this._flagAdapter.setSlotFlags('scripts', flags, true);
+    this.scripts.setValue(flags);
+    this.scripts.markAsDirty();
+    this.scripts.updateValueAndValidity();
   }
 
   public onScrFeatureFlagsChange(flags: Flag[]): void {

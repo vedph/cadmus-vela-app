@@ -35,6 +35,9 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-01-26:
+  - `GrfWritingPart.Scripts` multiple instead of `Script` (`@myrmidon/cadmus-part-graffiti-localization`).
+  - `GrfLocalizationPart.Period` added (`@myrmidon/cadmus-part-graffiti-writing`).
 - 2024-01-19: updated Angular and packages.
 - 2024-01-04: updated Angular and packages.
 

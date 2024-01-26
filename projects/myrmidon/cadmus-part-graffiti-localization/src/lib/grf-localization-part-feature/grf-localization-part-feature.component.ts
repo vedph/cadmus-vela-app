@@ -35,6 +35,7 @@ export class GrfLocalizationPartFeatureComponent
   protected override getReqThesauriIds(): string[] {
     return [
       'grf-place-languages',
+      'grf-periods',
       'grf-place-piece-types',
       'grf-support-object-types',
       'grf-support-functions',

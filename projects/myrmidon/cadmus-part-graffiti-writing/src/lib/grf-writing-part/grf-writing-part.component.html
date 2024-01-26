@@ -50,44 +50,14 @@
               >
             </mat-form-field>
 
-            <!-- script (bound) -->
-            <mat-form-field *ngIf="scrEntries?.length">
-              <mat-label i18n>script</mat-label>
-              <mat-select [formControl]="script">
-                <mat-option *ngFor="let e of scrEntries" [value]="e.id">{{
-                  e.value
-                }}</mat-option>
-              </mat-select>
-              <mat-error
-                i18n
-                *ngIf="
-                  $any(script).errors?.required &&
-                  (script.dirty || script.touched)
-                "
-                >script required</mat-error
-              >
-            </mat-form-field>
-            <!-- script (free) -->
-            <mat-form-field *ngIf="!scrEntries?.length">
-              <mat-label i18n>script</mat-label>
-              <input matInput [formControl]="script" />
-              <mat-error
-                i18n
-                *ngIf="
-                  $any(script).errors?.required &&
-                  (script.dirty || script.touched)
-                "
-                >script required</mat-error
-              >
-              <mat-error
-                i18n
-                *ngIf="
-                  $any(script).errors?.maxLength &&
-                  (script.dirty || script.touched)
-                "
-                >script too long</mat-error
-              >
-            </mat-form-field>
+            <!-- scripts -->
+            <fieldset>
+              <legend i18n>scripts</legend>
+              <cadmus-ui-flags-picker
+                [flags]="scrFlags$ | async"
+                (flagsChange)="onScriptFlagsChange($event)"
+              />
+            </fieldset>
 
             <!-- casing (bound) -->
             <mat-form-field *ngIf="caseEntries?.length">
