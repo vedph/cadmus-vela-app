@@ -35,6 +35,9 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-01-30:
+  - added `prevalentCasing` and `glottologCodes` to `GrfWritingPart`.
+  - added `damnatio` to `GrfLocalizationPart`.
 - 2024-01-26:
   - `GrfWritingPart.Scripts` multiple instead of `Script` (`@myrmidon/cadmus-part-graffiti-localization`).
   - `GrfLocalizationPart.Period` added (`@myrmidon/cadmus-part-graffiti-writing`).

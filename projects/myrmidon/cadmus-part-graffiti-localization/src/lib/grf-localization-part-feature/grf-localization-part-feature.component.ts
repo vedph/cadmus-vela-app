@@ -38,6 +38,7 @@ export class GrfLocalizationPartFeatureComponent
       'grf-periods',
       'grf-place-piece-types',
       'grf-support-object-types',
+      'grf-damnatio-types',
       'grf-support-functions',
     ];
   }

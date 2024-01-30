@@ -8,6 +8,7 @@ export interface GrfLocalizationPart extends Part {
   place: ProperName;
   period: string;
   objectType: string;
+  damnatio?: string;
   function: string;
   note?: string;
   indoor?: boolean;
@@ -104,6 +105,9 @@ export const GRF_LOCALIZATION_PART_SCHEMA = {
       type: 'string'
     },
     objectType: {
+      type: 'string',
+    },
+    damnatio: {
       type: 'string',
     },
     function: {

@@ -40,6 +40,7 @@ export class GrfWritingPartComponent
   implements OnInit
 {
   private _lngEntries: ThesaurusEntry[];
+  private _glgEntries: ThesaurusEntry[];
   private _scrEntries: ThesaurusEntry[];
   private _scrFeatEntries: ThesaurusEntry[];
   private _letFeatEntries: ThesaurusEntry[];
@@ -48,6 +49,7 @@ export class GrfWritingPartComponent
 
   // flags
   public lngFlags$: Observable<Flag[]>;
+  public glgFlags$: Observable<Flag[]>;
   public scrFlags$: Observable<Flag[]>;
   public scrFeatFlags$: Observable<Flag[]>;
   public letFeatFlags$: Observable<Flag[]>;
@@ -71,6 +73,21 @@ export class GrfWritingPartComponent
     );
   }
 
+  // grf-writing-glottologs
+  public get glgEntries(): ThesaurusEntry[] | undefined {
+    return this._glgEntries;
+  }
+  public set glgEntries(value: ThesaurusEntry[] | undefined) {
+    if (this._glgEntries === value) {
+      return;
+    }
+    this._glgEntries = value || [];
+    this._flagAdapter.setSlotFlags(
+      'glottologs',
+      this._glgEntries.map(entryToFlag)
+    );
+  }
+
   // grf-writing-scripts
   public get scrEntries(): ThesaurusEntry[] | undefined {
     return this._scrEntries;
@@ -88,6 +105,8 @@ export class GrfWritingPartComponent
 
   // grf-writing-casing
   public caseEntries?: ThesaurusEntry[];
+  // grf-writing-prevalent-casing
+  public prevCaseEntries?: ThesaurusEntry[];
 
   // grf-writing-count-ids
   public cntiEntries?: ThesaurusEntry[];
@@ -140,8 +159,10 @@ export class GrfWritingPartComponent
   // form
   public system: FormControl<string>;
   public languages: FormControl<Flag[]>;
+  public glottologs: FormControl<Flag[]>;
   public scripts: FormControl<Flag[]>;
   public casing: FormControl<string>;
+  public prevalentCasing: FormControl<string | null>;
   public scrFeatures: FormControl<Flag[]>;
   public letFeatures: FormControl<Flag[]>;
   public counts: FormControl<DecoratedCount[]>;
@@ -157,12 +178,14 @@ export class GrfWritingPartComponent
     super(authService, formBuilder);
     // flags
     this._lngEntries = [];
+    this._glgEntries = [];
     this._scrEntries = [];
     this._scrFeatEntries = [];
     this._letFeatEntries = [];
     this._mtrEntries = [];
     this._flagAdapter = new FlagsPickerAdapter();
     this.lngFlags$ = this._flagAdapter.selectFlags('languages');
+    this.glgFlags$ = this._flagAdapter.selectFlags('glottologs');
     this.scrFlags$ = this._flagAdapter.selectFlags('scripts');
     this.scrFeatFlags$ = this._flagAdapter.selectFlags('script-features');
     this.letFeatFlags$ = this._flagAdapter.selectFlags('letter-features');
@@ -176,11 +199,15 @@ export class GrfWritingPartComponent
       validators: NgToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
+    this.glottologs = formBuilder.control([], {
+      nonNullable: true,
+    });
     this.scripts = formBuilder.control([], {
       validators: NgToolsValidators.strictMinLengthValidator(1),
       nonNullable: true,
     });
     this.casing = formBuilder.control('', { nonNullable: true });
+    this.prevalentCasing = formBuilder.control(null);
     this.scrFeatures = formBuilder.control([], { nonNullable: true });
     this.letFeatures = formBuilder.control([], { nonNullable: true });
     this.counts = formBuilder.control([], { nonNullable: true });
@@ -201,8 +228,10 @@ export class GrfWritingPartComponent
     return formBuilder.group({
       system: this.system,
       languages: this.languages,
+      glottologs: this.glottologs,
       scripts: this.scripts,
       casing: this.casing,
+      prevalentCasing: this.prevalentCasing,
       scrFeatures: this.scrFeatures,
       letFeatures: this.letFeatures,
       counts: this.counts,
@@ -229,6 +258,12 @@ export class GrfWritingPartComponent
     } else {
       this.lngEntries = undefined;
     }
+    key = 'grf-writing-glottologs';
+    if (this.hasThesaurus(key)) {
+      this.glgEntries = thesauri[key].entries;
+    } else {
+      this.glgEntries = undefined;
+    }
     key = 'grf-writing-scripts';
     if (this.hasThesaurus(key)) {
       this.scrEntries = thesauri[key].entries;
@@ -240,6 +275,12 @@ export class GrfWritingPartComponent
       this.caseEntries = thesauri[key].entries;
     } else {
       this.caseEntries = undefined;
+    }
+    key = 'grf-writing-prevalent-casing';
+    if (this.hasThesaurus(key)) {
+      this.prevCaseEntries = thesauri[key].entries;
+    } else {
+      this.prevCaseEntries = undefined;
     }
     key = 'grf-writing-script-features';
     if (this.hasThesaurus(key)) {
@@ -282,10 +323,14 @@ export class GrfWritingPartComponent
     this.languages.setValue(
       this._flagAdapter.setSlotChecks('languages', part.languages)
     );
+    this.glottologs.setValue(
+      this._flagAdapter.setSlotChecks('glottologs', part.glottologCodes || [])
+    );
     this.scripts.setValue(
       this._flagAdapter.setSlotChecks('scripts', part.scripts)
     );
     this.casing.setValue(part.casing);
+    this.prevalentCasing.setValue(part.prevalentCasing || null);
     this.scrFeatures.setValue(
       this._flagAdapter.setSlotChecks(
         'script-features',
@@ -326,8 +371,11 @@ export class GrfWritingPartComponent
     part.system = this.system.value?.trim();
     part.languages =
       this._flagAdapter.getOptionalCheckedFlagIds('languages') || [];
+    part.glottologCodes =
+      this._flagAdapter.getOptionalCheckedFlagIds('glottologs') || [];
     part.scripts = this._flagAdapter.getOptionalCheckedFlagIds('scripts') || [];
     part.casing = this.casing.value?.trim();
+    part.prevalentCasing = this.prevalentCasing.value?.trim() || undefined;
     part.scriptFeatures =
       this._flagAdapter.getOptionalCheckedFlagIds('script-features') || [];
     part.letterFeatures =
@@ -354,6 +402,13 @@ export class GrfWritingPartComponent
     this.languages.setValue(flags);
     this.languages.markAsDirty();
     this.languages.updateValueAndValidity();
+  }
+
+  public onGlottologFlagsChange(flags: Flag[]): void {
+    this._flagAdapter.setSlotFlags('glottologs', flags, true);
+    this.glottologs.setValue(flags);
+    this.glottologs.markAsDirty();
+    this.glottologs.updateValueAndValidity();
   }
 
   public onScriptFlagsChange(flags: Flag[]): void {

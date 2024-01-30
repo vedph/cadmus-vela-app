@@ -36,6 +36,7 @@ export class GrfWritingPartFeatureComponent
     return [
       'grf-writing-systems',
       'grf-writing-languages',
+      'grf-writing-glottologs',
       'grf-writing-scripts',
       'grf-writing-casing',
       'grf-writing-script-features',

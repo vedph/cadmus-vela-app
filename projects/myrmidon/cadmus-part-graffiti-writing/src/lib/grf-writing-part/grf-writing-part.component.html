@@ -88,6 +88,45 @@
                 >casing too long</mat-error
               >
             </mat-form-field>
+
+            <!-- prevalentCasing (bound) -->
+            <mat-form-field *ngIf="prevCaseEntries?.length">
+              <mat-label i18n>prevalentCasing</mat-label>
+              <mat-select [formControl]="prevalentCasing">
+                <mat-option *ngFor="let e of prevCaseEntries" [value]="e.id">{{
+                  e.value
+                }}</mat-option>
+              </mat-select>
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(prevalentCasing).errors?.required &&
+                  (prevalentCasing.dirty || prevalentCasing.touched)
+                "
+                >prevalent casing required</mat-error
+              >
+            </mat-form-field>
+            <!-- prevalentCasing (free) -->
+            <mat-form-field *ngIf="!prevCaseEntries?.length">
+              <mat-label i18n>prevalentCasing</mat-label>
+              <input matInput [formControl]="prevalentCasing" />
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(prevalentCasing).errors?.required &&
+                  (prevalentCasing.dirty || prevalentCasing.touched)
+                "
+                >prevalent casing required</mat-error
+              >
+              <mat-error
+                i18n
+                *ngIf="
+                  $any(prevalentCasing).errors?.maxLength &&
+                  (prevalentCasing.dirty || prevalentCasing.touched)
+                "
+                >prevalent casing too long</mat-error
+              >
+            </mat-form-field>
           </div>
           <div>
             <!-- scripts -->
@@ -99,13 +138,21 @@
               />
             </fieldset>
           </div>
-          <div>
+          <div class="form-row">
             <!-- languages -->
             <fieldset>
               <legend i18n>language(s)</legend>
               <cadmus-ui-flags-picker
                 [flags]="lngFlags$ | async"
                 (flagsChange)="onLanguageFlagsChange($event)"
+              ></cadmus-ui-flags-picker>
+            </fieldset>
+            <!-- glottologs -->
+            <fieldset>
+              <legend i18n>Glottolog codes</legend>
+              <cadmus-ui-flags-picker
+                [flags]="glgFlags$ | async"
+                (flagsChange)="onGlottologFlagsChange($event)"
               ></cadmus-ui-flags-picker>
             </fieldset>
           </div>

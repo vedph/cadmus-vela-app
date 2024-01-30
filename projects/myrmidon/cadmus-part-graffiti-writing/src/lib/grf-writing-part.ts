@@ -7,8 +7,10 @@ import { DecoratedCount } from '@myrmidon/cadmus-refs-decorated-counts';
 export interface GrfWritingPart extends Part {
   system: string;
   languages: string[];
+  glottologCodes?: string[];
   scripts: string[];
   casing: string;
+  prevalentCasing?: string;
   scriptFeatures?: string[];
   letterFeatures?: string[];
   counts?: DecoratedCount[];
@@ -89,6 +91,12 @@ export const GRF_WRITING_PART_SCHEMA = {
         type: 'string',
       },
     },
+    glottologCodes: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
     scripts: {
       type: 'array',
       items: {
@@ -96,6 +104,9 @@ export const GRF_WRITING_PART_SCHEMA = {
       },
     },
     casing: {
+      type: 'string',
+    },
+    prevalentCasing: {
       type: 'string',
     },
     scriptFeatures: {

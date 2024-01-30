@@ -10,12 +10,12 @@ import {
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { ProperName } from '@myrmidon/cadmus-refs-proper-name';
+import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 
 import {
   GRF_LOCALIZATION_PART_TYPEID,
   GrfLocalizationPart,
 } from '../grf-localization-part';
-import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 
 /**
  * Grf localization part editor component.
@@ -34,6 +34,7 @@ export class GrfLocalizationPartComponent
   public place: FormControl<ProperName | null>;
   public period: FormControl<string>;
   public objectType: FormControl<string>;
+  public damnatio: FormControl<string | null>;
   public function: FormControl<string>;
   public note: FormControl<string | null>;
   public indoor: FormControl<boolean>;
@@ -48,6 +49,8 @@ export class GrfLocalizationPartComponent
   public plptEntries?: ThesaurusEntry[];
   // grf-support-object-types
   public suppObjEntries?: ThesaurusEntry[];
+  // grf-damnatio-types
+  public damnEntries?: ThesaurusEntry[];
   // grf-support-functions
   public suppFnEntries?: ThesaurusEntry[];
 
@@ -62,6 +65,9 @@ export class GrfLocalizationPartComponent
     this.objectType = formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
       nonNullable: true,
+    });
+    this.damnatio = formBuilder.control(null, {
+      validators: Validators.maxLength(50),
     });
     this.function = formBuilder.control('', {
       validators: [Validators.required, Validators.maxLength(100)],
@@ -83,6 +89,7 @@ export class GrfLocalizationPartComponent
       place: this.place,
       period: this.period,
       objectType: this.objectType,
+      damnatio: this.damnatio,
       function: this.function,
       note: this.note,
       indoor: this.indoor,
@@ -114,6 +121,12 @@ export class GrfLocalizationPartComponent
     } else {
       this.suppObjEntries = undefined;
     }
+    key = 'grf-damnatio-types';
+    if (this.hasThesaurus(key)) {
+      this.damnEntries = thesauri[key].entries;
+    } else {
+      this.damnEntries = undefined;
+    }
     key = 'grf-support-functions';
     if (this.hasThesaurus(key)) {
       this.suppFnEntries = thesauri[key].entries;
@@ -130,6 +143,7 @@ export class GrfLocalizationPartComponent
     this.initialPlace = part.place;
     this.period.setValue(part.period);
     this.objectType.setValue(part.objectType);
+    this.damnatio.setValue(part.damnatio || null);
     this.function.setValue(part.function);
     this.note.setValue(part.note || null);
     this.indoor.setValue(part.indoor ? true : false);
@@ -153,6 +167,7 @@ export class GrfLocalizationPartComponent
     part.place = this.place.value!;
     part.period = this.period.value?.trim();
     part.objectType = this.objectType.value.trim();
+    part.damnatio = this.damnatio.value?.trim();
     part.function = this.function.value.trim();
     part.note = this.note.value?.trim();
     part.indoor = this.indoor.value;
