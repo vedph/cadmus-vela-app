@@ -39,7 +39,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
 // ngx-monaco
-import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 // ngx-markdown
 import { MarkdownModule } from 'ngx-markdown';
 // ngx-leaflet
