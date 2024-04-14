@@ -16,11 +16,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 
+import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
+
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
 
@@ -50,11 +51,11 @@ import { GrfWritingPartFeatureComponent } from './grf-writing-part-feature/grf-w
     // myrmex
     NgToolsModule,
     // cadmus
+    DecoratedCountsComponent,
+    FlagsPickerComponent,
     CadmusCoreModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusStateModule,
     CadmusUiModule,
-    CadmusUiFlagsPickerModule,
     CadmusUiPgModule,
   ],
   exports: [GrfWritingPartComponent, GrfWritingPartFeatureComponent],

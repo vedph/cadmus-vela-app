@@ -1,17 +1,5 @@
 # Cadmus Vela App
 
-- [Cadmus Vela App](#cadmus-vela-app)
-  - [Docker](#docker)
-  - [History](#history)
-    - [3.0.0](#300)
-    - [2.0.0](#200)
-    - [1.0.0](#100)
-    - [0.0.5](#005)
-    - [0.0.4](#004)
-    - [0.0.3](#003)
-    - [0.0.2](#002)
-    - [0.0.1](#001)
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
 - [API](https://github.com/vedph/cadmus-vela-api)
@@ -35,6 +23,9 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+### 4.0.0
+
+- 2024-04-14: ⚠️ upgraded to [bricks V2](https://github.com/vedph/cadmus-bricks-shell-v2).
 - 2024-03-23:
   - ⚠️ updated packages removing `rangy` and replacing MapboxGL with Leaflet.
   - updated Angular.

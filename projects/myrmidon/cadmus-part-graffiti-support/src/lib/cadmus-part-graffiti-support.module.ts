@@ -19,14 +19,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { PhysicalSizeComponent } from '@myrmidon/cadmus-mat-physical-size';
+import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
+import { HistoricalDateComponent } from '@myrmidon/cadmus-refs-historical-date';
+import { ProperNameComponent } from '@myrmidon/cadmus-refs-proper-name';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
-import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
-import { CadmusRefsProperNameModule } from '@myrmidon/cadmus-refs-proper-name';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
 
@@ -34,10 +34,7 @@ import { GrfSupportPartComponent } from './grf-support-part/grf-support-part.com
 import { GrfSupportPartFeatureComponent } from './grf-support-part-feature/grf-support-part-feature.component';
 
 @NgModule({
-  declarations: [
-    GrfSupportPartComponent,
-    GrfSupportPartFeatureComponent
-  ],
+  declarations: [GrfSupportPartComponent, GrfSupportPartFeatureComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -62,19 +59,16 @@ import { GrfSupportPartFeatureComponent } from './grf-support-part-feature/grf-s
     // myrmex
     NgToolsModule,
     // cadmus
+    HistoricalDateComponent,
+    ProperNameComponent,
+    FlagsPickerComponent,
+    PhysicalSizeComponent,
+    DecoratedCountsComponent,
     CadmusCoreModule,
     CadmusStateModule,
-    CadmusRefsHistoricalDateModule,
-    CadmusRefsProperNameModule,
     CadmusUiModule,
-    CadmusUiFlagsPickerModule,
-    CadmusMatPhysicalSizeModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusUiPgModule,
   ],
-  exports: [
-    GrfSupportPartComponent,
-    GrfSupportPartFeatureComponent
-  ],
+  exports: [GrfSupportPartComponent, GrfSupportPartFeatureComponent],
 })
 export class CadmusPartGraffitiSupportModule {}

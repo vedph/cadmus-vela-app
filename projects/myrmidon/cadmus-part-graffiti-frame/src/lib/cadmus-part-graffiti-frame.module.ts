@@ -19,14 +19,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+// bricks
+import { PhysicalSizeComponent } from '@myrmidon/cadmus-mat-physical-size';
+import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
+import { HistoricalDateComponent } from '@myrmidon/cadmus-refs-historical-date';
+import { ProperNameComponent } from '@myrmidon/cadmus-refs-proper-name';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
+
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
-import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
-import { CadmusRefsProperNameModule } from '@myrmidon/cadmus-refs-proper-name';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
 
@@ -34,10 +36,7 @@ import { GrfFramePartComponent } from './grf-frame-part/grf-frame-part.component
 import { GrfFramePartFeatureComponent } from './grf-frame-part-feature/grf-frame-part-feature.component';
 
 @NgModule({
-  declarations: [
-    GrfFramePartComponent,
-    GrfFramePartFeatureComponent
-  ],
+  declarations: [GrfFramePartComponent, GrfFramePartFeatureComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -61,20 +60,18 @@ import { GrfFramePartFeatureComponent } from './grf-frame-part-feature/grf-frame
     MatTooltipModule,
     // myrmex
     NgToolsModule,
+    // bricks
+    HistoricalDateComponent,
+    ProperNameComponent,
+    FlagsPickerComponent,
+    PhysicalSizeComponent,
+    DecoratedCountsComponent,
     // cadmus
     CadmusCoreModule,
     CadmusStateModule,
-    CadmusRefsHistoricalDateModule,
-    CadmusRefsProperNameModule,
     CadmusUiModule,
-    CadmusUiFlagsPickerModule,
-    CadmusMatPhysicalSizeModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusUiPgModule,
   ],
-  exports: [
-    GrfFramePartComponent,
-    GrfFramePartFeatureComponent
-  ],
+  exports: [GrfFramePartComponent, GrfFramePartFeatureComponent],
 })
 export class CadmusPartGraffitiFrameModule {}

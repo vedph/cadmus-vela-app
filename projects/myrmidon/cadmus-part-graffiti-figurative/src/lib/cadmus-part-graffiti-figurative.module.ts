@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
 
@@ -48,11 +48,12 @@ import { GrfFigurativePartFeatureComponent } from './grf-figurative-part-feature
     MatTooltipModule,
     // myrmex
     NgToolsModule,
+    // bricks
+    FlagsPickerComponent,
     // cadmus
     CadmusCoreModule,
     CadmusStateModule,
     CadmusUiModule,
-    CadmusUiFlagsPickerModule,
     CadmusUiPgModule,
   ],
   exports: [GrfFigurativePartComponent, GrfFigurativePartFeatureComponent],

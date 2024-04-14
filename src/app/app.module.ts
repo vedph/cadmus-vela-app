@@ -38,11 +38,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
-// ngx-monaco
-import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
-// ngx-markdown
-import { MarkdownModule } from 'ngx-markdown';
-// ngx-leaflet
+// vendor
+import { NgeMonacoModule } from '@cisstech/nge/monaco';
+import { NgeMarkdownModule } from '@cisstech/nge/markdown';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 // myrmidon
@@ -55,16 +53,19 @@ import {
 import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
 
 // cadmus bricks
-import { CadmusRefsDocReferencesModule } from '@myrmidon/cadmus-refs-doc-references';
-import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
-import { CadmusRefsAssertedIdsModule } from '@myrmidon/cadmus-refs-asserted-ids';
+import { DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
+import { HistoricalDateComponent } from '@myrmidon/cadmus-refs-historical-date';
+import {
+  AssertedCompositeIdComponent,
+  AssertedCompositeIdsComponent,
+} from '@myrmidon/cadmus-refs-asserted-ids';
 
 // cadmus
 import { CadmusApiModule } from '@myrmidon/cadmus-api';
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
 import { CadmusGraphPgModule } from '@myrmidon/cadmus-graph-pg';
 import { CadmusGraphUiModule } from '@myrmidon/cadmus-graph-ui';
-import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
+import { PhysicalSizeComponent } from '@myrmidon/cadmus-mat-physical-size';
 import { CadmusProfileCoreModule } from '@myrmidon/cadmus-profile-core';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
@@ -72,11 +73,11 @@ import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { CadmusItemEditorModule } from '@myrmidon/cadmus-item-editor';
 import { CadmusItemListModule } from '@myrmidon/cadmus-item-list';
 import { CadmusItemSearchModule } from '@myrmidon/cadmus-item-search';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
+import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
 import { CadmusThesaurusEditorModule } from '@myrmidon/cadmus-thesaurus-editor';
 import { CadmusThesaurusListModule } from '@myrmidon/cadmus-thesaurus-list';
 import { CadmusThesaurusUiModule } from '@myrmidon/cadmus-thesaurus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
 
 // local components
 import { AppRoutingModule } from './app-routing.module';
@@ -141,8 +142,8 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     MatToolbarModule,
     MatTreeModule,
     // vendors
-    MonacoEditorModule.forRoot(),
-    MarkdownModule.forRoot(),
+    NgeMonacoModule.forRoot({}),
+    NgeMarkdownModule,
     LeafletModule,
     // myrmidon
     NgToolsModule,
@@ -150,13 +151,16 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     AuthJwtLoginModule,
     AuthJwtAdminModule,
     // cadmus bricks
-    CadmusRefsDocReferencesModule,
-    CadmusRefsHistoricalDateModule,
-    CadmusRefsAssertedIdsModule,
+    DocReferencesComponent,
+    HistoricalDateComponent,
+    AssertedCompositeIdComponent,
+    AssertedCompositeIdsComponent,
+    PhysicalSizeComponent,
+    DecoratedCountsComponent,
+    FlagsPickerComponent,
     // cadmus
     CadmusApiModule,
     CadmusCoreModule,
-    CadmusMatPhysicalSizeModule,
     CadmusProfileCoreModule,
     CadmusStateModule,
     CadmusUiModule,
@@ -166,11 +170,9 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     CadmusItemEditorModule,
     CadmusItemListModule,
     CadmusItemSearchModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusThesaurusEditorModule,
     CadmusThesaurusListModule,
     CadmusThesaurusUiModule,
-    CadmusUiFlagsPickerModule,
   ],
   providers: [
     // environment service

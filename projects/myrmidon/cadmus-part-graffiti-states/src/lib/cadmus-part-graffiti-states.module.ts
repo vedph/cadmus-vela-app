@@ -19,14 +19,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+// bricks
+import { PhysicalSizeComponent } from '@myrmidon/cadmus-mat-physical-size';
+import { DecoratedCountsComponent } from '@myrmidon/cadmus-refs-decorated-counts';
+import { HistoricalDateComponent } from '@myrmidon/cadmus-refs-historical-date';
+import { ProperNameComponent } from '@myrmidon/cadmus-refs-proper-name';
+import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
+
 import { CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusMatPhysicalSizeModule } from '@myrmidon/cadmus-mat-physical-size';
-import { CadmusRefsDecoratedCountsModule } from '@myrmidon/cadmus-refs-decorated-counts';
-import { CadmusRefsHistoricalDateModule } from '@myrmidon/cadmus-refs-historical-date';
-import { CadmusRefsProperNameModule } from '@myrmidon/cadmus-refs-proper-name';
 import { CadmusStateModule } from '@myrmidon/cadmus-state';
 import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiFlagsPickerModule } from '@myrmidon/cadmus-ui-flags-picker';
 import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { NgToolsModule } from '@myrmidon/ng-tools';
 
@@ -64,14 +66,14 @@ import { GrfStateComponent } from './grf-state/grf-state.component';
     // myrmex
     NgToolsModule,
     // cadmus
+    HistoricalDateComponent,
+    ProperNameComponent,
+    FlagsPickerComponent,
+    PhysicalSizeComponent,
+    DecoratedCountsComponent,
     CadmusCoreModule,
     CadmusStateModule,
-    CadmusRefsHistoricalDateModule,
-    CadmusRefsProperNameModule,
     CadmusUiModule,
-    CadmusUiFlagsPickerModule,
-    CadmusMatPhysicalSizeModule,
-    CadmusRefsDecoratedCountsModule,
     CadmusUiPgModule,
   ],
   exports: [
