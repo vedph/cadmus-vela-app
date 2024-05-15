@@ -23,6 +23,10 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-05-15:
+  - updated Angular and packages.
+  - added text editor plugins.
+
 ### 4.0.0
 
 - 2024-04-14: ⚠️ upgraded to [bricks V2](https://github.com/vedph/cadmus-bricks-shell-v2).
