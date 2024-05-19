@@ -10,7 +10,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `npm run build-lib`.
 2. update version in `env.js` and `ng build --configuration=production`.
-3. `docker build . -t vedph2020/cadmus-vela-app:4.0.2 -t vedph2020/cadmus-vela-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-vela-app:4.0.3 -t vedph2020/cadmus-vela-app:latest` (replace with the current version).
 
 You can spare a prod-specific image by just overwriting the [env.js](src/env.js) file in your [Docker compose script](docker-compose.yml) via a volume, e.g.. putting under `cadmus-app`:
 
@@ -22,6 +22,8 @@ volumes:
 where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your host machine, and the portion of the value after colon is the path to `env.js` inside the container. In `env.js` you must ensure that `apiUrl` points to the correct API location, which in the default file is just `localhost` with a specific non-standard port.
 
 ## History
+
+### 4.0.3
 
 - 2024-05-19: updated Angular and packages.
 - 2024-05-15:
