@@ -27,155 +27,128 @@
       <!-- period -->
       <div class="form-row">
         <!-- period (bound) -->
-        <mat-form-field *ngIf="periodEntries?.length">
+        @if (periodEntries?.length) {
+        <mat-form-field>
           <mat-label>period</mat-label>
           <mat-select [formControl]="period">
-            <mat-option *ngFor="let e of periodEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
+            @for (e of periodEntries; track e.id) {
+            <mat-option [value]="e.id">{{ e.value }}</mat-option>
+            }
           </mat-select>
-          <mat-error
-            *ngIf="
-              $any(period).errors?.required && (period.dirty || period.touched)
-            "
-            >period required</mat-error
-          >
+          @if ( $any(period).errors?.required && (period.dirty ||
+          period.touched) ) {
+          <mat-error>period required</mat-error>
+          }
         </mat-form-field>
+        }
         <!-- period (free) -->
-        <mat-form-field *ngIf="!periodEntries?.length">
+        @if (!periodEntries?.length) {
+        <mat-form-field>
           <mat-label>period</mat-label>
           <input matInput [formControl]="period" />
-          <mat-error
-            *ngIf="
-              $any(period).errors?.required && (period.dirty || period.touched)
-            "
-            >period required</mat-error
-          >
-          <mat-error
-            *ngIf="
-              $any(period).errors?.maxLength && (period.dirty || period.touched)
-            "
-            >period too long</mat-error
-          >
+          @if ( $any(period).errors?.required && (period.dirty ||
+          period.touched) ) {
+          <mat-error>period required</mat-error>
+          } @if ( $any(period).errors?.maxLength && (period.dirty ||
+          period.touched) ) {
+          <mat-error>period too long</mat-error>
+          }
         </mat-form-field>
+        }
 
         <!-- damnatio (bound) -->
-        <mat-form-field *ngIf="damnEntries?.length">
+        @if (damnEntries?.length) {
+        <mat-form-field>
           <mat-label>damnatio</mat-label>
           <mat-select [formControl]="damnatio">
-            <mat-option *ngFor="let e of damnEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
+            @for (e of damnEntries; track e.id) {
+            <mat-option [value]="e.id">{{ e.value }}</mat-option>
+            }
           </mat-select>
-          <mat-error
-            *ngIf="
-              $any(damnatio).errors?.required &&
-              (damnatio.dirty || damnatio.touched)
-            "
-            >damnatio required</mat-error
-          >
+          @if ( $any(damnatio).errors?.required && (damnatio.dirty ||
+          damnatio.touched) ) {
+          <mat-error>damnatio required</mat-error>
+          }
         </mat-form-field>
+        }
 
         <!-- damnatio (free) -->
-        <mat-form-field *ngIf="!damnEntries?.length">
+        @if (!damnEntries?.length) {
+        <mat-form-field>
           <mat-label>damnatio</mat-label>
           <input matInput [formControl]="damnatio" />
-          <mat-error
-            *ngIf="
-              $any(damnatio).errors?.required &&
-              (damnatio.dirty || damnatio.touched)
-            "
-            >damnatio required</mat-error
-          >
-          <mat-error
-            *ngIf="
-              $any(damnatio).errors?.maxLength &&
-              (damnatio.dirty || damnatio.touched)
-            "
-            >damnatio too long</mat-error
-          >
+          @if ( $any(damnatio).errors?.required && (damnatio.dirty ||
+          damnatio.touched) ) {
+          <mat-error>damnatio required</mat-error>
+          } @if ( $any(damnatio).errors?.maxLength && (damnatio.dirty ||
+          damnatio.touched) ) {
+          <mat-error>damnatio too long</mat-error>
+          }
         </mat-form-field>
+        }
       </div>
 
       <div class="form-row">
         <!-- objectType -->
         <!-- objectType (bound) -->
-        <mat-form-field *ngIf="suppObjEntries?.length">
+        @if (suppObjEntries?.length) {
+        <mat-form-field>
           <mat-label i18n>objectType</mat-label>
           <mat-select [formControl]="objectType">
-            <mat-option *ngFor="let e of suppObjEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
+            @for (e of suppObjEntries; track e.id) {
+            <mat-option [value]="e.id">{{ e.value }}</mat-option>
+            }
           </mat-select>
-          <mat-error
-            i18n
-            *ngIf="
-              $any(objectType).errors?.required &&
-              (objectType.dirty || objectType.touched)
-            "
-            >object type required</mat-error
-          >
+          @if ( $any(objectType).errors?.required && (objectType.dirty ||
+          objectType.touched) ) {
+          <mat-error i18n>object type required</mat-error>
+          }
         </mat-form-field>
+        }
         <!-- objectType (free) -->
-        <mat-form-field *ngIf="!suppObjEntries?.length">
+        @if (!suppObjEntries?.length) {
+        <mat-form-field>
           <mat-label i18n>objectType</mat-label>
           <input matInput [formControl]="objectType" />
-          <mat-error
-            i18n
-            *ngIf="
-              $any(objectType).errors?.required &&
-              (objectType.dirty || objectType.touched)
-            "
-            >object type required</mat-error
-          >
-          <mat-error
-            i18n
-            *ngIf="
-              $any(objectType).errors?.maxLength &&
-              (objectType.dirty || objectType.touched)
-            "
-            >object type too long</mat-error
-          >
+          @if ( $any(objectType).errors?.required && (objectType.dirty ||
+          objectType.touched) ) {
+          <mat-error i18n>object type required</mat-error>
+          } @if ( $any(objectType).errors?.maxLength && (objectType.dirty ||
+          objectType.touched) ) {
+          <mat-error i18n>object type too long</mat-error>
+          }
         </mat-form-field>
+        }
 
         <!-- function (bound) -->
-        <mat-form-field *ngIf="suppFnEntries?.length">
+        @if (suppFnEntries?.length) {
+        <mat-form-field>
           <mat-label i18n>current function</mat-label>
           <mat-select [formControl]="function">
-            <mat-option *ngFor="let e of suppFnEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
+            @for (e of suppFnEntries; track e.id) {
+            <mat-option [value]="e.id">{{ e.value }}</mat-option>
+            }
           </mat-select>
-          <mat-error
-            i18n
-            *ngIf="
-              $any(function).errors?.required &&
-              (function.dirty || function.touched)
-            "
-            >current function required</mat-error
-          >
+          @if ( $any(function).errors?.required && (function.dirty ||
+          function.touched) ) {
+          <mat-error i18n>current function required</mat-error>
+          }
         </mat-form-field>
+        }
         <!-- function (free) -->
-        <mat-form-field *ngIf="!suppFnEntries?.length">
+        @if (!suppFnEntries?.length) {
+        <mat-form-field>
           <mat-label i18n>current function</mat-label>
           <input matInput [formControl]="function" />
-          <mat-error
-            i18n
-            *ngIf="
-              $any(function).errors?.required &&
-              (function.dirty || function.touched)
-            "
-            >current function required</mat-error
-          >
-          <mat-error
-            i18n
-            *ngIf="
-              $any(function).errors?.maxLength &&
-              (function.dirty || function.touched)
-            "
-            >current function too long</mat-error
-          >
+          @if ( $any(function).errors?.required && (function.dirty ||
+          function.touched) ) {
+          <mat-error i18n>current function required</mat-error>
+          } @if ( $any(function).errors?.maxLength && (function.dirty ||
+          function.touched) ) {
+          <mat-error i18n>current function too long</mat-error>
+          }
         </mat-form-field>
+        }
       </div>
 
       <!-- note -->
@@ -183,11 +156,9 @@
         <mat-form-field class="long-text">
           <mat-label i18n>original function</mat-label>
           <textarea matInput [formControl]="note"></textarea>
-          <mat-error
-            i18n
-            *ngIf="$any(note).errors?.maxLength && (note.dirty || note.touched)"
-            >note too long</mat-error
-          >
+          @if ($any(note).errors?.maxLength && (note.dirty || note.touched)) {
+          <mat-error i18n>note too long</mat-error>
+          }
         </mat-form-field>
       </div>
     </mat-card-content>

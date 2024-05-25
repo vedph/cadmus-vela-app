@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,35 +27,29 @@ import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
 import { GrfTechniquePartComponent } from './grf-technique-part/grf-technique-part.component';
 import { GrfTechniquePartFeatureComponent } from './grf-technique-part-feature/grf-technique-part-feature.component';
 
-@NgModule({
-  declarations: [GrfTechniquePartComponent, GrfTechniquePartFeatureComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-    // material
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatTooltipModule,
-    // myrmex
-    NgToolsModule,
-    FlagsPickerComponent,
-    // cadmus
-    CadmusCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
-  ],
-  exports: [GrfTechniquePartComponent, GrfTechniquePartFeatureComponent],
-})
+@NgModule({ declarations: [GrfTechniquePartComponent, GrfTechniquePartFeatureComponent],
+    exports: [GrfTechniquePartComponent, GrfTechniquePartFeatureComponent], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        // material
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatTabsModule,
+        MatTooltipModule,
+        // myrmex
+        NgToolsModule,
+        FlagsPickerComponent,
+        // cadmus
+        CadmusCoreModule,
+        CadmusStateModule,
+        CadmusUiModule,
+        CadmusUiPgModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class CadmusPartGraffitiTechniqueModule {}

@@ -11,21 +11,24 @@
         <!-- types picker -->
         <fieldset id="type-set">
           <legend i18n>figure type</legend>
-          <cadmus-thesaurus-tree
-            *ngIf="typeEntries?.length"
-            [entries]="typeEntries"
-            rootLabel="fig.types"
-            i18n-rootLabel
-            [renderLabel]="renderLabel"
-            (entryChange)="onTypeChange($event)"
-          ></cadmus-thesaurus-tree>
+          @if (typeEntries?.length) {
+            <cadmus-thesaurus-tree
+              [entries]="typeEntries"
+              rootLabel="fig.types"
+              i18n-rootLabel
+              [renderLabel]="renderLabel"
+              (entryChange)="onTypeChange($event)"
+            ></cadmus-thesaurus-tree>
+          }
         </fieldset>
 
         <!-- types -->
         <fieldset id="sel-types">
           <legend i18n>selected types</legend>
           <ol>
-            <li *ngFor="let e of types.value">{{ e.value }}</li>
+            @for (e of types.value; track e.id) {
+              <li>{{ e.value }}</li>
+            }
           </ol>
         </fieldset>
       </div>
@@ -36,23 +39,24 @@
         <mat-form-field class="long-text">
           <mat-label i18n>description</mat-label>
           <textarea matInput [formControl]="description"></textarea>
-          <mat-error
-            i18n
-            *ngIf="
-              $any(description).errors?.maxLength &&
-              (description.dirty || description.touched)
-            "
-            >description too long</mat-error
-          >
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <cadmus-close-save-buttons
-        [form]="form"
-        [noSave]="userLevel < 2"
-        (closeRequest)="close()"
-      ></cadmus-close-save-buttons>
-    </mat-card-actions>
-  </mat-card>
-</form>
+          @if (
+            $any(description).errors?.maxLength &&
+            (description.dirty || description.touched)
+            ) {
+            <mat-error
+              i18n
+              >description too long</mat-error
+              >
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <cadmus-close-save-buttons
+          [form]="form"
+          [noSave]="userLevel < 2"
+          (closeRequest)="close()"
+        ></cadmus-close-save-buttons>
+      </mat-card-actions>
+    </mat-card>
+  </form>

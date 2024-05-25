@@ -29,18 +29,19 @@
       <mat-form-field class="long-text">
         <mat-label i18n>note</mat-label>
         <textarea matInput [formControl]="note"></textarea>
-        <mat-error i18n
-          *ngIf="$any(note).errors?.maxLength && (note.dirty || note.touched)"
-          >note too long</mat-error
-        >
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <cadmus-close-save-buttons
-        [form]="form"
-        [noSave]="userLevel < 2"
-        (closeRequest)="close()"
-      ></cadmus-close-save-buttons>
-    </mat-card-actions>
-  </mat-card>
-</form>
+        @if ($any(note).errors?.maxLength && (note.dirty || note.touched)) {
+          <mat-error i18n
+            >note too long</mat-error
+            >
+          }
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <cadmus-close-save-buttons
+          [form]="form"
+          [noSave]="userLevel < 2"
+          (closeRequest)="close()"
+        ></cadmus-close-save-buttons>
+      </mat-card-actions>
+    </mat-card>
+  </form>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -36,50 +36,44 @@ import { GrfStatesPartComponent } from './grf-states-part/grf-states-part.compon
 import { GrfStatesPartFeatureComponent } from './grf-states-part-feature/grf-states-part-feature.component';
 import { GrfStateComponent } from './grf-state/grf-state.component';
 
-@NgModule({
-  declarations: [
-    GrfStatesPartComponent,
-    GrfStatesPartFeatureComponent,
-    GrfStateComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-    // material
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatTooltipModule,
-    // myrmex
-    NgToolsModule,
-    // cadmus
-    HistoricalDateComponent,
-    ProperNameComponent,
-    FlagsPickerComponent,
-    PhysicalSizeComponent,
-    DecoratedCountsComponent,
-    CadmusCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
-  ],
-  exports: [
-    GrfStatesPartComponent,
-    GrfStatesPartFeatureComponent,
-    GrfStateComponent,
-  ],
-})
+@NgModule({ declarations: [
+        GrfStatesPartComponent,
+        GrfStatesPartFeatureComponent,
+        GrfStateComponent,
+    ],
+    exports: [
+        GrfStatesPartComponent,
+        GrfStatesPartFeatureComponent,
+        GrfStateComponent,
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        // material
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatTabsModule,
+        MatTooltipModule,
+        // myrmex
+        NgToolsModule,
+        // cadmus
+        HistoricalDateComponent,
+        ProperNameComponent,
+        FlagsPickerComponent,
+        PhysicalSizeComponent,
+        DecoratedCountsComponent,
+        CadmusCoreModule,
+        CadmusStateModule,
+        CadmusUiModule,
+        CadmusUiPgModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class CadmusPartGraffitiStatesModule {}

@@ -23,37 +23,39 @@
         <mat-form-field class="long-text">
           <mat-label i18n>frame</mat-label>
           <textarea matInput [formControl]="frame"></textarea>
-          <mat-error
-            i18n
-            *ngIf="
-              $any(frame).errors?.maxLength && (frame.dirty || frame.touched)
-            "
-            >frame too long</mat-error
-          >
-        </mat-form-field>
-      </div>
+          @if (
+            $any(frame).errors?.maxLength && (frame.dirty || frame.touched)
+            ) {
+            <mat-error
+              i18n
+              >frame too long</mat-error
+              >
+            }
+          </mat-form-field>
+        </div>
 
-      <!-- figure -->
-      <div>
-        <mat-form-field class="long-text">
-          <mat-label i18n>figure</mat-label>
-          <textarea matInput [formControl]="figure"></textarea>
-          <mat-error
-            i18n
-            *ngIf="
+        <!-- figure -->
+        <div>
+          <mat-form-field class="long-text">
+            <mat-label i18n>figure</mat-label>
+            <textarea matInput [formControl]="figure"></textarea>
+            @if (
               $any(figure).errors?.maxLength && (figure.dirty || figure.touched)
-            "
-            >figure too long</mat-error
-          >
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <cadmus-close-save-buttons
-        [form]="form"
-        [noSave]="userLevel < 2"
-        (closeRequest)="close()"
-      ></cadmus-close-save-buttons>
-    </mat-card-actions>
-  </mat-card>
-</form>
+              ) {
+              <mat-error
+                i18n
+                >figure too long</mat-error
+                >
+              }
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <cadmus-close-save-buttons
+            [form]="form"
+            [noSave]="userLevel < 2"
+            (closeRequest)="close()"
+          ></cadmus-close-save-buttons>
+        </mat-card-actions>
+      </mat-card>
+    </form>

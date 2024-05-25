@@ -9,85 +9,104 @@
     <mat-card-content>
       <div class="form-row">
         <!-- type (bound) -->
-        <mat-form-field *ngIf="suppTypeEntries?.length">
-          <mat-label>type</mat-label>
-          <mat-select [formControl]="type">
-            <mat-option *ngFor="let e of suppTypeEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="$any(type).errors?.required && (type.dirty || type.touched)"
-            >type required</mat-error
-          >
-        </mat-form-field>
-        <!-- type (free) -->
-        <mat-form-field *ngIf="!suppTypeEntries?.length">
-          <mat-label>type</mat-label>
-          <input matInput [formControl]="type" />
-          <mat-error
-            *ngIf="$any(type).errors?.required && (type.dirty || type.touched)"
-            >type required</mat-error
-          >
-          <mat-error
-            *ngIf="$any(type).errors?.maxLength && (type.dirty || type.touched)"
-            >type too long</mat-error
-          >
-        </mat-form-field>
+        @if (suppTypeEntries?.length) {
+          <mat-form-field>
+            <mat-label>type</mat-label>
+            <mat-select [formControl]="type">
+              @for (e of suppTypeEntries; track e.id) {
+                <mat-option [value]="e.id">{{
+                  e.value
+                }}</mat-option>
+              }
+            </mat-select>
+            @if ($any(type).errors?.required && (type.dirty || type.touched)) {
+              <mat-error
+                >type required</mat-error
+                >
+              }
+            </mat-form-field>
+          }
+          <!-- type (free) -->
+          @if (!suppTypeEntries?.length) {
+            <mat-form-field>
+              <mat-label>type</mat-label>
+              <input matInput [formControl]="type" />
+              @if ($any(type).errors?.required && (type.dirty || type.touched)) {
+                <mat-error
+                  >type required</mat-error
+                  >
+                }
+                @if ($any(type).errors?.maxLength && (type.dirty || type.touched)) {
+                  <mat-error
+                    >type too long</mat-error
+                    >
+                  }
+                </mat-form-field>
+              }
 
-        <!-- material (bound) -->
-        <mat-form-field *ngIf="suppMatEntries?.length">
-          <mat-label>material</mat-label>
-          <mat-select [formControl]="material">
-            <mat-option *ngFor="let e of suppMatEntries" [value]="e.id">{{
-              e.value
-            }}</mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="
-              $any(material).errors?.required &&
-              (material.dirty || material.touched)
-            "
-            >material required</mat-error
-          >
-        </mat-form-field>
-        <!-- material (free) -->
-        <mat-form-field *ngIf="!suppMatEntries?.length">
-          <mat-label>material</mat-label>
-          <input matInput [formControl]="material" />
-          <mat-error
-            *ngIf="
-              $any(material).errors?.required &&
-              (material.dirty || material.touched)
-            "
-            >material required</mat-error
-          >
-          <mat-error
-            *ngIf="
-              $any(material).errors?.maxLength &&
-              (material.dirty || material.touched)
-            "
-            >material too long</mat-error
-          >
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="long-text">
-          <mat-label>note</mat-label>
-          <textarea matInput [formControl]="note"></textarea>
-          <mat-error
-            *ngIf="$any(note).errors?.maxLength && (note.dirty || note.touched)"
-            >note too long</mat-error
-          >
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <cadmus-close-save-buttons
-        [form]="form"
-        [noSave]="userLevel < 2"
-        (closeRequest)="close()"
-      ></cadmus-close-save-buttons>
-    </mat-card-actions>
-  </mat-card>
-</form>
+              <!-- material (bound) -->
+              @if (suppMatEntries?.length) {
+                <mat-form-field>
+                  <mat-label>material</mat-label>
+                  <mat-select [formControl]="material">
+                    @for (e of suppMatEntries; track e.id) {
+                      <mat-option [value]="e.id">{{
+                        e.value
+                      }}</mat-option>
+                    }
+                  </mat-select>
+                  @if (
+                    $any(material).errors?.required &&
+                    (material.dirty || material.touched)
+                    ) {
+                    <mat-error
+                      >material required</mat-error
+                      >
+                    }
+                  </mat-form-field>
+                }
+                <!-- material (free) -->
+                @if (!suppMatEntries?.length) {
+                  <mat-form-field>
+                    <mat-label>material</mat-label>
+                    <input matInput [formControl]="material" />
+                    @if (
+                      $any(material).errors?.required &&
+                      (material.dirty || material.touched)
+                      ) {
+                      <mat-error
+                        >material required</mat-error
+                        >
+                      }
+                      @if (
+                        $any(material).errors?.maxLength &&
+                        (material.dirty || material.touched)
+                        ) {
+                        <mat-error
+                          >material too long</mat-error
+                          >
+                        }
+                      </mat-form-field>
+                    }
+                  </div>
+                  <div>
+                    <mat-form-field class="long-text">
+                      <mat-label>note</mat-label>
+                      <textarea matInput [formControl]="note"></textarea>
+                      @if ($any(note).errors?.maxLength && (note.dirty || note.touched)) {
+                        <mat-error
+                          >note too long</mat-error
+                          >
+                        }
+                      </mat-form-field>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <cadmus-close-save-buttons
+                      [form]="form"
+                      [noSave]="userLevel < 2"
+                      (closeRequest)="close()"
+                    ></cadmus-close-save-buttons>
+                  </mat-card-actions>
+                </mat-card>
+              </form>

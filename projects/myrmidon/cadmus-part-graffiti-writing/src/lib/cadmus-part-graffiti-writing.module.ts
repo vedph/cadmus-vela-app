@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -28,36 +28,30 @@ import { NgToolsModule } from '@myrmidon/ng-tools';
 import { GrfWritingPartComponent } from './grf-writing-part/grf-writing-part.component';
 import { GrfWritingPartFeatureComponent } from './grf-writing-part-feature/grf-writing-part-feature.component';
 
-@NgModule({
-  declarations: [GrfWritingPartComponent, GrfWritingPartFeatureComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    HttpClientModule,
-    // material
-    MatButtonModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatTooltipModule,
-    // myrmex
-    NgToolsModule,
-    // cadmus
-    DecoratedCountsComponent,
-    FlagsPickerComponent,
-    CadmusCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
-  ],
-  exports: [GrfWritingPartComponent, GrfWritingPartFeatureComponent],
-})
+@NgModule({ declarations: [GrfWritingPartComponent, GrfWritingPartFeatureComponent],
+    exports: [GrfWritingPartComponent, GrfWritingPartFeatureComponent], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        // material
+        MatButtonModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatTabsModule,
+        MatTooltipModule,
+        // myrmex
+        NgToolsModule,
+        // cadmus
+        DecoratedCountsComponent,
+        FlagsPickerComponent,
+        CadmusCoreModule,
+        CadmusStateModule,
+        CadmusUiModule,
+        CadmusUiPgModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class CadmusPartGraffitiWritingModule {}
