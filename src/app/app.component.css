@@ -14,3 +14,6 @@ footer {
   padding: 4px;
   text-align: center;
 }
+mat-toolbar mat-icon {
+  color: white;
+}

@@ -12,8 +12,9 @@
           type="button"
           mat-flat-button
           color="primary"
+          class="mat-primary"
           (click)="addState()"
-          >
+        >
           <mat-icon>add_circle</mat-icon>
           <ng-container i18n>state</ng-container>
         </button>
@@ -29,56 +30,56 @@
         </thead>
         <tbody>
           @for (s of states.value; track s; let i = $index) {
-            <tr>
-              <td>
-                <button
-                  type="button"
-                  mat-icon-button
-                  color="primary"
-                  (click)="editState(s, i)"
-                  >
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button
-                  type="button"
-                  mat-icon-button
-                  color="warn"
-                  (click)="deleteState(i)"
-                  >
-                  <mat-icon>remove_circle</mat-icon>
-                </button>
-              </td>
-              <td>
-                {{ s.date | date : "yyyy-MM-dd" }}
-              </td>
-              <td>
-                {{ s.type | flatLookup : stateEntries : "id" : "value" }}
-              </td>
-              <td>
-                {{ s.reporter }}
-              </td>
-            </tr>
+          <tr>
+            <td>
+              <button
+                type="button"
+                mat-icon-button
+                color="primary"
+                (click)="editState(s, i)"
+              >
+                <mat-icon class="mat-primary">edit</mat-icon>
+              </button>
+              <button
+                type="button"
+                mat-icon-button
+                color="warn"
+                (click)="deleteState(i)"
+              >
+                <mat-icon class="mat-warn">remove_circle</mat-icon>
+              </button>
+            </td>
+            <td>
+              {{ s.date | date : "yyyy-MM-dd" }}
+            </td>
+            <td>
+              {{ s.type | flatLookup : stateEntries : "id" : "value" }}
+            </td>
+            <td>
+              {{ s.reporter }}
+            </td>
+          </tr>
           }
         </tbody>
       </table>
       <mat-expansion-panel [disabled]="!editedState" [expanded]="editedState">
         <mat-expansion-panel-header
           >#{{ editedStateIndex + 1 }}</mat-expansion-panel-header
-          >
-          <cadmus-grf-state
-            [stateEntries]="stateEntries"
-            [state]="editedState"
-            (stateChange)="saveState($event)"
-            (editorClose)="closeState()"
-          ></cadmus-grf-state>
-        </mat-expansion-panel>
-      </mat-card-content>
-      <mat-card-actions>
-        <cadmus-close-save-buttons
-          [form]="form"
-          [noSave]="userLevel < 2"
-          (closeRequest)="close()"
-        ></cadmus-close-save-buttons>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+        >
+        <cadmus-grf-state
+          [stateEntries]="stateEntries"
+          [state]="editedState"
+          (stateChange)="saveState($event)"
+          (editorClose)="closeState()"
+        ></cadmus-grf-state>
+      </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions>
+      <cadmus-close-save-buttons
+        [form]="form"
+        [noSave]="userLevel < 2"
+        (closeRequest)="close()"
+      ></cadmus-close-save-buttons>
+    </mat-card-actions>
+  </mat-card>
+</form>

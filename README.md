@@ -23,6 +23,11 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-06-09:
+  - updated Angular and packages.
+  - added `class="mat-X"` for each `color="X"` (e.g. `class="mat-primary"` wherever there is a `color="primary"`) to allow transitioning to Angular Material M3 from M2. This also implies adding it directly to the target element, so in the case of `mat-icon` inside a `button` with `color` the class is added to `mat-icon` directly (unless the button too has the same color). This allows to keep the old M2 clients while using the new M3, because it seems that the compatibility mixin is not effective in some cases like inheritance of `color`, and in the future `color` will be replaced by `class` altogether.
+  - applied [M3 theme](https://material.angular.io/guide/theming).
+  - added missing `preview-styles.css`.
 - 2024-05-24: ⚠️ upgraded to Angular 18.
 
 ### 4.0.3

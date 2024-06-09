@@ -1,0 +1,224 @@
+/*
+Preview styles. By convention they all start with prefix "pv-".
+*/
+
+.pv-muted {
+  color: silver;
+}
+.pv-flex-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pv-flex-row * {
+  flex: 0 0 auto;
+}
+.cadmus-text-block-view-col {
+  border: 1px solid transparent;
+  padding: 1px;
+}
+.cadmus-text-block-view-col:hover {
+  border: 1px solid #ffdd26;
+  padding: 1px;
+}
+
+/* layer ID-based styles */
+
+div[class^="it.vedph.token-text-layer|fr.it.vedph.apparatus"],
+div[class*=" it.vedph.token-text-layer|fr.it.vedph.apparatus"] {
+  background-color: lightsalmon;
+}
+
+div[class^="it.vedph.token-text-layer|fr.it.vedph.chronology"],
+div[class*=" it.vedph.token-text-layer|fr.it.vedph.chronology"] {
+  background-color: palegoldenrod;
+}
+
+div[class^="it.vedph.token-text-layer|fr.it.vedph.comment"],
+div[class*=" it.vedph.token-text-layer|fr.it.vedph.comment"] {
+  background-color: palegreen;
+}
+
+div[class^="it.vedph.token-text-layer|fr.it.vedph.orthography"],
+div[class*=" it.vedph.token-text-layer|fr.it.vedph.orthography"] {
+  background-color: palevioletred;
+}
+
+div[class^="it.vedph.token-text-layer|fr.it.vedph.quotations"],
+div[class*=" it.vedph.token-text-layer|fr.it.vedph.quotations"] {
+  background-color: paleturquoise;
+}
+
+div[class^="it.vedph.token-text-layer|fr.it.vedph.witnesses"],
+div[class*=" it.vedph.token-text-layer|fr.it.vedph.witnesses"] {
+  background-color: peachpuff;
+}
+
+/* note */
+
+.note-text {
+  margin: 8px;
+  column-count: 4;
+  column-width: 400px;
+}
+
+/* apparatus layer */
+
+.apparatus-lemma {
+  padding: 2px 4px;
+  border: 1px solid silver;
+  border-radius: 4px;
+  margin-right: 4px;
+  color: #065e1d;
+}
+
+.apparatus-w-value {
+  font-weight: bold;
+}
+
+.apparatus-w-note {
+  font-style: italic;
+}
+
+.apparatus-a-value {
+  font-style: italic;
+}
+
+.apparatus-a-note {
+  font-style: italic;
+}
+
+.apparatus-sep {
+  margin-left: 0.75em;
+}
+
+.apparatus-tag {
+  font-style: italic;
+}
+
+.apparatus-subrange {
+  color: silver;
+}
+
+.apparatus-value {
+  color: #b8690f;
+}
+
+.apparatus-type {
+  font-style: italic;
+}
+
+.apparatus-note {
+  font-style: italic;
+}
+
+/* comment layer */
+
+.comment a {
+  text-decoration: none;
+}
+.comment a:hover {
+  text-decoration: underline;
+}
+.comment-tag {
+  color: silver;
+  font-weight: bold;
+  padding: 6px;
+  border: 1px solid silver;
+  border-radius: 6px;
+}
+.comment-text {
+  margin: 8px;
+  column-count: 4;
+  column-width: 400px;
+}
+.comment-categories {
+    margin: 6px 0;
+}
+.comment-category {
+    background-color: #afd3ff;
+    border: 1px solid #afd3ff;
+    border-radius: 4px;
+    padding: 4px;
+}
+.comment-keywords {
+  line-height: 200%;
+}
+.comment-kw-x {
+  background-color: #34eb98;
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 4px;
+}
+.comment-kw-l {
+  background-color: #bdb03e;
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 4px;
+}
+.comment-kw-v {
+  color: #827609;
+}
+.comment-hdr {
+  color: royalblue;
+  border-bottom: 1px solid royalblue;
+  margin: 8px 0;
+  font-variant: small-caps;
+}
+.comment-references {
+  line-height: 200%;
+}
+.comment-ref-y {
+  background-color: #35c6ea;
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 4px;
+}
+.comment-ref-t {
+  background-color: #34eb98;
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 4px;
+}
+.comment-ref-c {
+}
+.comment-ref-n {
+  font-style: italic;
+}
+.comment-ids {
+  line-height: 200%;
+}
+.comment-id-t {
+  background-color: #34eb98;
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 4px;
+}
+.comment-id-r {
+  font-weight: bold;
+  color: orange;
+}
+.comment-id-n {
+  font-style: italic;
+}
+.comment-id-s {
+  border: 1px solid orange;
+  border-radius: 4px;
+  padding: 4px;
+  margin: 0 4px;
+}
+.comment-assertion {
+  border: 1px solid orange;
+  border-radius: 6px;
+  padding: 6px;
+  margin: 4px;
+  background-color: #fefefe;
+}
+.comment-assertion-refs {
+}
