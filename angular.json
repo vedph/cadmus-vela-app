@@ -17,7 +17,7 @@
               "base": "dist/cadmus-vela-app"
             },
             "index": "src/index.html",
-            "polyfills": ["zone.js"],
+            "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets", "src/env.js"],
             "styles": [
@@ -32,7 +32,8 @@
               "hidden": false,
               "vendor": true
             },
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "allowedCommonJsDependencies": ["diff-match-patch", "leaflet"]
           },
           "configurations": {
             "production": {

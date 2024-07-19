@@ -52,7 +52,7 @@
       <!-- indicators -->
       <img
         alt="avatar"
-        [src]="getGravatarUrl(user.email, 32)"
+        [src]="user.email | gravatar : 32"
         [alt]="user.userName"
       />
       @if (user && user.roles.includes('admin')) {
