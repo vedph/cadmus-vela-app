@@ -23,6 +23,7 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-09-12: updated Angular and packages.
 - 2024-07-19:
   - updated Angular and packages.
   - [refactored Gravatar](https://myrmex.github.io/overview/cadmus/dev/history/f-gravatar/).
