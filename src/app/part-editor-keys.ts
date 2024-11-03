@@ -12,6 +12,8 @@ import {
   TOKEN_TEXT_PART_TYPEID,
   COMMENT_FRAGMENT_TYPEID,
   CHRONOLOGY_FRAGMENT_TYPEID,
+  DISTRICT_LOCATION_PART_TYPEID,
+  PHYSICAL_STATES_PART_TYPEID,
 } from '@myrmidon/cadmus-part-general-ui';
 import {
   APPARATUS_FRAGMENT_TYPEID,
@@ -20,19 +22,12 @@ import {
 import { PartEditorKeys } from '@myrmidon/cadmus-core';
 
 import { ASSERTED_LOCATIONS_PART_TYPEID } from '@myrmidon/cadmus-part-geo-asserted-locations';
-import { ASSERTED_TOPONYMS_PART_TYPEID } from '@myrmidon/cadmus-part-geo-asserted-toponyms';
+// import { ASSERTED_TOPONYMS_PART_TYPEID } from '@myrmidon/cadmus-part-geo-asserted-toponyms';
 
 import { EPI_SUPPORT_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-support';
 import { EPI_WRITING_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-writing';
+import { EPI_TECHNIQUE_PART_TYPEID } from '@myrmidon/cadmus-part-epigraphy-technique';
 import { EPI_LIGATURES_FRAGMENT_TYPEID } from '@myrmidon/cadmus-fr-epigraphy-ligatures';
-
-import { GRF_FIGURATIVE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-figurative/src/public-api';
-import { GRF_FRAME_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-frame/src/public-api';
-import { GRF_LOCALIZATION_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-localization/src/public-api';
-import { GRF_STATES_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-states/src/public-api';
-import { GRF_SUPPORT_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-support/src/public-api';
-import { GRF_TECHNIQUE_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-technique/src/public-api';
-import { GRF_WRITING_PART_TYPEID } from 'projects/myrmidon/cadmus-part-graffiti-writing/src/public-api';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
@@ -58,6 +53,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [COMMENT_PART_TYPEID]: {
     part: GENERAL,
   },
+  [DISTRICT_LOCATION_PART_TYPEID]: {
+    part: GENERAL,
+  },
   [DOC_REFERENCES_PART_TYPEID]: {
     part: GENERAL,
   },
@@ -67,16 +65,13 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [HISTORICAL_DATE_PART_TYPEID]: {
     part: GENERAL,
   },
-  [INDEX_KEYWORDS_PART_TYPEID]: {
-    part: GENERAL,
-  },
   [METADATA_PART_TYPEID]: {
     part: GENERAL,
   },
-  [NAMES_PART_TYPEID]: {
+  [NOTE_PART_TYPEID]: {
     part: GENERAL,
   },
-  [NOTE_PART_TYPEID]: {
+  [PHYSICAL_STATES_PART_TYPEID]: {
     part: GENERAL,
   },
   [TOKEN_TEXT_PART_TYPEID]: {
@@ -86,37 +81,18 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [ASSERTED_LOCATIONS_PART_TYPEID]: {
     part: GEOGRAPHY,
   },
-  [ASSERTED_TOPONYMS_PART_TYPEID]: {
-    part: GEOGRAPHY,
-  },
+  // [ASSERTED_TOPONYMS_PART_TYPEID]: {
+  //   part: GEOGRAPHY,
+  // },
   // epigraphy
   [EPI_SUPPORT_PART_TYPEID]: {
     part: EPIGRAPHY,
   },
-  [EPI_WRITING_PART_TYPEID]: {
+  [EPI_TECHNIQUE_PART_TYPEID]: {
     part: EPIGRAPHY,
   },
-  // graffiti
-  [GRF_LOCALIZATION_PART_TYPEID]: {
-    part: GRAFFITI,
-  },
-  [GRF_SUPPORT_PART_TYPEID]: {
-    part: GRAFFITI,
-  },
-  [GRF_FRAME_PART_TYPEID]: {
-    part: GRAFFITI,
-  },
-  [GRF_STATES_PART_TYPEID]: {
-    part: GRAFFITI,
-  },
-  [GRF_TECHNIQUE_PART_TYPEID]: {
-    part: GRAFFITI,
-  },
-  [GRF_WRITING_PART_TYPEID]: {
-    part: GRAFFITI,
-  },
-  [GRF_FIGURATIVE_PART_TYPEID]: {
-    part: GRAFFITI,
+  [EPI_WRITING_PART_TYPEID]: {
+    part: EPIGRAPHY,
   },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {

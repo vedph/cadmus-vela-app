@@ -23,6 +23,9 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+### 5.0.0
+
+- 2024-11-03: ⚠️ refactored item configuration. Now all the grf- parts under projects are no longer needed, as everything derives from a shared set of epigraphy components.
 - 2024-10-29: updated packages.
 - 2024-10-28: updated Angular.
 
