@@ -38,6 +38,7 @@ services:
       # for Windows use : as separator, for non Windows use __
       # (see https://github.com/aspnet/Configuration/issues/469)
       - CONNECTIONSTRINGS__DEFAULT=mongodb://cadmus-vela-mongo:27017/{0}
+      - CONNECTIONSTRINGS__AUTH=Server=cadmus-vela-pgsql;port=5432;Database={0};User Id=postgres;Password=postgres;Include Error Detail=True
       - CONNECTIONSTRINGS__INDEX=Server=cadmus-vela-pgsql;port=5432;Database={0};User Id=postgres;Password=postgres;Include Error Detail=True
       - SERILOG__CONNECTIONSTRING=mongodb://cadmus-vela-mongo:27017/{0}-log
       - STOCKUSERS__0__PASSWORD=P4ss-W0rd!
@@ -49,8 +50,8 @@ services:
       - cadmus-vela-network
 
   # Cadmus VeLA App
-  cadmus-app:
-    image: vedph2020/cadmus-vela-app:5.0.1
+  cadmus-vela-app:
+    image: vedph2020/cadmus-vela-app:5.0.2
     container_name: cadmus-vela-app
     ports:
       - 4200:80
