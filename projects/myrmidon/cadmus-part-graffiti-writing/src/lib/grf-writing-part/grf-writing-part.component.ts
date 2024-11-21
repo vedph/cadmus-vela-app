@@ -31,9 +31,10 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
  * grf-writing-count-ids, grf-writing-count-tags, grf-writing-metres.
  */
 @Component({
-  selector: 'cadmus-grf-writing-part',
-  templateUrl: './grf-writing-part.component.html',
-  styleUrls: ['./grf-writing-part.component.css'],
+    selector: 'cadmus-grf-writing-part',
+    templateUrl: './grf-writing-part.component.html',
+    styleUrls: ['./grf-writing-part.component.css'],
+    standalone: false
 })
 export class GrfWritingPartComponent
   extends ModelEditorComponentBase<GrfWritingPart>

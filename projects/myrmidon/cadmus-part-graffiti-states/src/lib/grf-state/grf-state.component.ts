@@ -10,9 +10,10 @@ import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { GrfState } from '../grf-states-part';
 
 @Component({
-  selector: 'cadmus-grf-state',
-  templateUrl: './grf-state.component.html',
-  styleUrls: ['./grf-state.component.css'],
+    selector: 'cadmus-grf-state',
+    templateUrl: './grf-state.component.html',
+    styleUrls: ['./grf-state.component.css'],
+    standalone: false
 })
 export class GrfStateComponent {
   private _state?: GrfState;

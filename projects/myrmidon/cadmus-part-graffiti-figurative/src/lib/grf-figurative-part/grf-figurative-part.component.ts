@@ -26,9 +26,10 @@ import {
  * Thesauri: grf-figurative-types.
  */
 @Component({
-  selector: 'cadmus-grf-figurative-part',
-  templateUrl: './grf-figurative-part.component.html',
-  styleUrls: ['./grf-figurative-part.component.css'],
+    selector: 'cadmus-grf-figurative-part',
+    templateUrl: './grf-figurative-part.component.html',
+    styleUrls: ['./grf-figurative-part.component.css'],
+    standalone: false
 })
 export class GrfFigurativePartComponent
   extends ModelEditorComponentBase<GrfFigurativePart>

@@ -18,9 +18,10 @@ import { GRF_SUPPORT_PART_TYPEID, GrfSupportPart } from '../grf-support-part';
  * Thesauri: grf-support-types, grf-support-materials.
  */
 @Component({
-  selector: 'cadmus-grf-support-part',
-  templateUrl: './grf-support-part.component.html',
-  styleUrls: ['./grf-support-part.component.css'],
+    selector: 'cadmus-grf-support-part',
+    templateUrl: './grf-support-part.component.html',
+    styleUrls: ['./grf-support-part.component.css'],
+    standalone: false
 })
 export class GrfSupportPartComponent
   extends ModelEditorComponentBase<GrfSupportPart>

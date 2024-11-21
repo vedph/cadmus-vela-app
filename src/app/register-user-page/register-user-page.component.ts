@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register-user-page',
-  templateUrl: './register-user-page.component.html',
-  styleUrls: ['./register-user-page.component.css']
+    selector: 'app-register-user-page',
+    templateUrl: './register-user-page.component.html',
+    styleUrls: ['./register-user-page.component.css'],
+    standalone: false
 })
 export class RegisterUserPageComponent implements OnInit {
 

@@ -24,9 +24,10 @@ import { NgToolsValidators } from '@myrmidon/ng-tools';
  * Thesauri: grf-states.
  */
 @Component({
-  selector: 'cadmus-grf-states-part',
-  templateUrl: './grf-states-part.component.html',
-  styleUrls: ['./grf-states-part.component.css'],
+    selector: 'cadmus-grf-states-part',
+    templateUrl: './grf-states-part.component.html',
+    styleUrls: ['./grf-states-part.component.css'],
+    standalone: false
 })
 export class GrfStatesPartComponent
   extends ModelEditorComponentBase<GrfStatesPart>

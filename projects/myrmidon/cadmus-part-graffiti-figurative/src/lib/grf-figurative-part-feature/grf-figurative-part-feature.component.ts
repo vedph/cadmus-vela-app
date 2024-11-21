@@ -6,9 +6,10 @@ import { EditPartFeatureBase, PartEditorService } from '@myrmidon/cadmus-state';
 import { ItemService, ThesaurusService } from '@myrmidon/cadmus-api';
 
 @Component({
-  selector: 'cadmus-grf-figurative-part-feature',
-  templateUrl: './grf-figurative-part-feature.component.html',
-  styleUrls: ['./grf-figurative-part-feature.component.css'],
+    selector: 'cadmus-grf-figurative-part-feature',
+    templateUrl: './grf-figurative-part-feature.component.html',
+    styleUrls: ['./grf-figurative-part-feature.component.css'],
+    standalone: false
 })
 export class GrfFigurativePartFeatureComponent
   extends EditPartFeatureBase

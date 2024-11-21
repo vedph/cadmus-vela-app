@@ -23,9 +23,10 @@ import {
  * grf-support-functions.
  */
 @Component({
-  selector: 'cadmus-grf-localization-part',
-  templateUrl: './grf-localization-part.component.html',
-  styleUrls: ['./grf-localization-part.component.css'],
+    selector: 'cadmus-grf-localization-part',
+    templateUrl: './grf-localization-part.component.html',
+    styleUrls: ['./grf-localization-part.component.css'],
+    standalone: false
 })
 export class GrfLocalizationPartComponent
   extends ModelEditorComponentBase<GrfLocalizationPart>

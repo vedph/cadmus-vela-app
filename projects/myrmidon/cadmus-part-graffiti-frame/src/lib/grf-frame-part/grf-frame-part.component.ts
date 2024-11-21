@@ -19,9 +19,10 @@ import { PhysicalSize } from '@myrmidon/cadmus-mat-physical-size';
  * Thesauri: physical-size-tags, physical-size-units, physical-size-dim-tags.
  */
 @Component({
-  selector: 'cadmus-grf-frame-part',
-  templateUrl: './grf-frame-part.component.html',
-  styleUrls: ['./grf-frame-part.component.css'],
+    selector: 'cadmus-grf-frame-part',
+    templateUrl: './grf-frame-part.component.html',
+    styleUrls: ['./grf-frame-part.component.css'],
+    standalone: false
 })
 export class GrfFramePartComponent
   extends ModelEditorComponentBase<GrfFramePart>

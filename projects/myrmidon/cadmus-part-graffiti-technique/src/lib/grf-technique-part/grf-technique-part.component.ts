@@ -31,9 +31,10 @@ function entryToFlag(entry: ThesaurusEntry): Flag {
  * Thesauri: grf-techniques, grf-tools.
  */
 @Component({
-  selector: 'cadmus-grf-technique-part',
-  templateUrl: './grf-technique-part.component.html',
-  styleUrls: ['./grf-technique-part.component.css'],
+    selector: 'cadmus-grf-technique-part',
+    templateUrl: './grf-technique-part.component.html',
+    styleUrls: ['./grf-technique-part.component.css'],
+    standalone: false
 })
 export class GrfTechniquePartComponent
   extends ModelEditorComponentBase<GrfTechniquePart>
