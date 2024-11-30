@@ -23,6 +23,7 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+- 2024-11-30: updated packages to add admin flags.
 - 2024-11-29:
   - updated packages.
   - use M3 theme.
