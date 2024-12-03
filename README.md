@@ -23,6 +23,11 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+### 7.0.0
+
+- 2024-12-03:
+  - ⚠️ upgraded to new core dependencies.
+  - removed legacy graffiti libraries from workspace.
 - 2024-11-30: updated packages to add admin flags.
 - 2024-11-29:
   - updated packages.

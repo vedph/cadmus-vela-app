@@ -2,35 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "paths": {
-      "@myrmidon/cadmus-part-graffiti-figurative": [
-        "dist/myrmidon/cadmus-part-graffiti-figurative"
-      ],
-      "@myrmidon/cadmus-part-graffiti-frame": [
-        "dist/myrmidon/cadmus-part-graffiti-frame"
-      ],
-      "@myrmidon/cadmus-part-graffiti-localization": [
-        "dist/myrmidon/cadmus-part-graffiti-localization"
-      ],
-      "@myrmidon/cadmus-part-graffiti-pg": [
-        "dist/myrmidon/cadmus-part-graffiti-pg"
-      ],
-      "@myrmidon/cadmus-part-graffiti-states": [
-        "dist/myrmidon/cadmus-part-graffiti-states"
-      ],
-      "@myrmidon/cadmus-part-graffiti-summary": [
-        "dist/myrmidon/cadmus-part-graffiti-summary"
-      ],
-      "@myrmidon/cadmus-part-graffiti-support": [
-        "dist/myrmidon/cadmus-part-graffiti-support"
-      ],
-      "@myrmidon/cadmus-part-graffiti-technique": [
-        "dist/myrmidon/cadmus-part-graffiti-technique"
-      ],
-      "@myrmidon/cadmus-part-graffiti-writing": [
-        "dist/myrmidon/cadmus-part-graffiti-writing"
-      ]
-    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
@@ -48,10 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

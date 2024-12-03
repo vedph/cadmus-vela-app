@@ -48,13 +48,17 @@ import { NgeMarkdownModule } from '@cisstech/nge/markdown';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 // myrmidon
-import { EnvServiceProvider, NgToolsModule } from '@myrmidon/ng-tools';
-import { NgMatToolsModule } from '@myrmidon/ng-mat-tools';
 import {
-  AuthJwtLoginModule,
+  EllipsisPipe,
+  EnvServiceProvider,
+  FlatLookupPipe,
+  SafeHtmlPipe,
+} from '@myrmidon/ngx-tools';
+import {
   authJwtInterceptor,
+  AuthJwtLoginComponent,
+  GravatarPipe,
 } from '@myrmidon/auth-jwt-login';
-import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
 
 // cadmus bricks
 import { DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
@@ -106,6 +110,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { PART_EDITOR_KEYS } from './part-editor-keys';
 import { INDEX_LOOKUP_DEFINITIONS } from './index-lookup-definitions';
 import { ITEM_BROWSER_KEYS } from './item-browser-keys';
+import {
+  AuthJwtRegistrationComponent,
+  UserListComponent,
+} from '@myrmidon/auth-jwt-admin';
 
 @NgModule({
   declarations: [
@@ -162,11 +170,14 @@ import { ITEM_BROWSER_KEYS } from './item-browser-keys';
     NgeMarkdownModule,
     LeafletModule,
     // myrmidon
-    NgToolsModule,
-    NgMatToolsModule,
-    AuthJwtLoginModule,
-    AuthJwtAdminModule,
-    // cadmus bricks
+    EllipsisPipe,
+    FlatLookupPipe,
+    SafeHtmlPipe,
+    AuthJwtLoginComponent,
+    AuthJwtRegistrationComponent,
+    UserListComponent,
+    GravatarPipe,
+    // bricks
     DocReferencesComponent,
     HistoricalDateComponent,
     AssertedCompositeIdComponent,
