@@ -50,7 +50,6 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 // myrmidon
 import {
   EllipsisPipe,
-  EnvServiceProvider,
   FlatLookupPipe,
   SafeHtmlPipe,
 } from '@myrmidon/ngx-tools';
@@ -206,8 +205,6 @@ import {
       withInterceptors([authJwtInterceptor]),
       withJsonpSupport()
     ),
-    // environment service
-    EnvServiceProvider,
     // parts and fragments type IDs to editor group keys mappings
     // https://github.com/nrwl/nx/issues/208#issuecomment-384102058
     // inject like: @Inject('partEditorKeys') partEditorKeys: PartEditorKeys
