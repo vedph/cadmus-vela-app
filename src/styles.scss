@@ -46,36 +46,21 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.mat-primary, .mat-accent {
+.mat-primary,
+.mat-accent {
   @include mat.all-component-colors($accent-theme);
 }
 
-.mat-error, .mat-warn {
+.mat-error,
+.mat-warn {
   @include mat.all-component-colors($error-theme);
 }
 
-mat-icon.mat-accent, mat-icon.mat-primary {
+mat-icon.mat-accent,
+mat-icon.mat-primary {
   color: var(--mdc-filled-text-field-focus-label-text-color) !important;
 }
-mat-icon.mat-error, mat-icon.mat-warn {
+mat-icon.mat-error,
+mat-icon.mat-warn {
   color: var(--mat-form-field-error-focus-trailing-icon-color) !important;
 }
-
-// @use "@angular/material" as mat;
-// @import "preview-styles.css";
-
-// @include mat.elevation-classes();
-// @include mat.app-background();
-
-// $light-theme: mat.define-theme(
-//   (
-//     color: (
-//       theme-type: light,
-//       primary: mat.$azure-palette,
-//     ),
-//   )
-// );
-
-// html {
-//   @include mat.all-component-themes($light-theme);
-// }

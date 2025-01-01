@@ -1,6 +1,6 @@
-# Cadmus Vela App
+# Cadmus VeLA App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
 
 - [API](https://github.com/vedph/cadmus-vela-api)
 
@@ -23,6 +23,9 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+### 8.0.0
+
+- 2025-01-01: ⚠️ refactored app for modern Angular.
 - 2024-12-24: updated to [bricks V3](https://github.com/vedph/cadmus-bricks-shell-v3).
 - 2024-12-23: updated Angular.
 - 2024-12-18: updated packages.

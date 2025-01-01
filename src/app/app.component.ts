@@ -1,15 +1,21 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Thesaurus, ThesaurusEntry } from '@myrmidon/cadmus-core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-import {
-  AuthJwtService,
-  GravatarService,
-  User,
-} from '@myrmidon/auth-jwt-login';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+import { AuthJwtService, GravatarPipe, User } from '@myrmidon/auth-jwt-login';
 import { EnvService, RamStorageService } from '@myrmidon/ngx-tools';
+
 import { ASSERTED_COMPOSITE_ID_CONFIGS_KEY } from '@myrmidon/cadmus-refs-asserted-ids';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
@@ -19,10 +25,20 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
 import { AppRepository } from '@myrmidon/cadmus-state';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: false
+  selector: 'app-root',
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    LeafletModule,
+    GravatarPipe,
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _authSub?: Subscription;
@@ -37,7 +53,6 @@ export class AppComponent implements OnInit, OnDestroy {
     @Inject('itemBrowserKeys')
     private _itemBrowserKeys: { [key: string]: string },
     private _authService: AuthJwtService,
-    private _gravatarService: GravatarService,
     private _appRepository: AppRepository,
     private _router: Router,
     env: EnvService,
@@ -52,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
     storage.store(ASSERTED_COMPOSITE_ID_CONFIGS_KEY, [
       {
         name: 'VIAF',
-        iconUrl: '/assets/img/viaf128.png',
+        iconUrl: '/img/viaf128.png',
         description: 'Virtual International Authority File',
         label: 'ID',
         service: viaf,
@@ -61,7 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
       },
       {
         name: 'DBpedia',
-        iconUrl: '/assets/img/dbpedia128.png',
+        iconUrl: '/img/dbpedia128.png',
         description: 'DBpedia',
         label: 'ID',
         service: dbpedia,
@@ -70,7 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
       },
       {
         name: 'geonames',
-        iconUrl: '/assets/img/geonames128.png',
+        iconUrl: '/img/geonames128.png',
         description: 'GeoNames',
         label: 'ID',
         service: geonames,
@@ -80,7 +95,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ] as RefLookupConfig[]);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.user = this._authService.currentUserValue || undefined;
     this.logged = this.user !== null;
 
@@ -101,7 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this._authSub?.unsubscribe();
     this._brSub?.unsubscribe();
   }

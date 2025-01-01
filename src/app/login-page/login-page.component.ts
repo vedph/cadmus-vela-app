@@ -1,23 +1,48 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthJwtService, Credentials } from '@myrmidon/auth-jwt-login';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import {
+  AuthJwtLoginComponent,
+  AuthJwtService,
+  Credentials,
+} from '@myrmidon/auth-jwt-login';
 
 @Component({
   selector: 'app-login-page',
+  standalone: true,
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
-  standalone: false,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatTooltipModule,
+    AuthJwtLoginComponent,
+  ],
 })
 export class LoginPageComponent {
+  public busy = false;
+  public error?: string;
+
   constructor(
     private _authService: AuthJwtService,
     private _router: Router,
     private _snackbar: MatSnackBar
   ) {}
-
-  public busy = false;
-  public error?: string;
 
   public onLoginRequest(credentials: Credentials): void {
     this.busy = true;
@@ -39,7 +64,6 @@ export class LoginPageComponent {
       },
     });
   }
-
   public onResetRequest(): void {
     this._router.navigate(['/reset-password']);
   }
