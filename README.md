@@ -23,6 +23,10 @@ where `/opt/cadmus/env.js` is the path to the modified `env.js` file in your hos
 
 ## History
 
+### 9.0.0
+
+- 2025-01-04: ⚠️ updated [Cadmus dependencies](https://github.com/vedph/cadmus-shell-v3) to version 11 (standalone components).
+
 ### 8.0.0
 
 - 2025-01-01: ⚠️ refactored app for modern Angular.

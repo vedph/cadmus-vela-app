@@ -34,7 +34,12 @@
               "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["leaflet", "diff-match-patch"]
+            "allowedCommonJsDependencies": [
+              "leaflet",
+              "diff-match-patch",
+              "webcola",
+              "dagre"
+            ]
           },
           "configurations": {
             "production": {

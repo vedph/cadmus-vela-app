@@ -4,6 +4,6 @@
 
   // environment-dependent settings
   window.__env.apiUrl = "http://localhost:5080/api/";
-  window.__env.version = "8.0.0";
+  window.__env.version = "9.0.0";
   window.__env.thesImportEnabled = true;
 })(this);
