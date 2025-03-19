@@ -27,7 +27,7 @@ services:
 
   # Cadmus VeLA API
   cadmus-vela-api:
-    image: vedph2020/cadmus-vela-api:4.0.1
+    image: vedph2020/cadmus-vela-api:4.0.2
     container_name: cadmus-vela-api
     ports:
       - 5080:8080
@@ -52,7 +52,7 @@ services:
 
   # Cadmus VeLA App
   cadmus-vela-app:
-    image: vedph2020/cadmus-vela-app:5.0.2
+    image: vedph2020/cadmus-vela-app:9.0.1
     container_name: cadmus-vela-app
     ports:
       - 4200:80
